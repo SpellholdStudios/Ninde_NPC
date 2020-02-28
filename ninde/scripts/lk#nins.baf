@@ -1,0 +1,627 @@
+// ---------------------------------------------
+// Ninde's Script
+// ---------------------------------------------
+
+// ---------------------------------------------
+// Ninde Romance & friendship checks
+// ---------------------------------------------
+IF
+    Global("LK#NindeRomanceCheck","GLOBAL",0)
+    Gender(Player1,MALE)
+    CheckStatGT(Player1,12,CHR)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeRomanceCheck","GLOBAL",1)
+    SetGlobal("LK#NindeRomanceActive","GLOBAL",1)
+END
+
+IF
+    Global("LK#NindeFriendshipCheck","GLOBAL",0)
+    Gender(Player1,FEMALE)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeFriendshipCheck","GLOBAL",1)
+    SetGlobal("LK#NindeFriendshipActive","GLOBAL",1)
+END
+
+
+// ---------------------------------------------
+// Romance
+// ---------------------------------------------
+// Romance Dialogues
+IF
+    InParty(Myself)
+    AreaCheck("AR1600")
+    Global("LK#NindeRomanceActive","GLOBAL",1)
+    Global("LK#NindeLoveTalks","GLOBAL",0)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeLoveTalksTimer","GLOBAL",300)
+    SetGlobal("LK#NindeLoveTalks","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(15)
+      Global("LK#NindeLoveTalks","GLOBAL",1)
+      Global("LK#NindeLoveTalks","GLOBAL",3)
+      Global("LK#NindeLoveTalks","GLOBAL",5)
+      Global("LK#NindeLoveTalks","GLOBAL",7)
+      Global("LK#NindeLoveTalks","GLOBAL",9)
+      Global("LK#NindeLoveTalks","GLOBAL",13)
+      Global("LK#NindeLoveTalks","GLOBAL",15)
+      Global("LK#NindeLoveTalks","GLOBAL",17)
+      Global("LK#NindeLoveTalks","GLOBAL",19)
+      Global("LK#NindeLoveTalks","GLOBAL",21)
+      Global("LK#NindeLoveTalks","GLOBAL",23)
+      Global("LK#NindeLoveTalks","GLOBAL",27)
+      Global("LK#NindeLoveTalks","GLOBAL",29)
+      Global("LK#NindeLoveTalks","GLOBAL",31)
+      Global("LK#NindeLoveTalks","GLOBAL",35)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(10)
+      Global("LK#NindeLoveTalks","GLOBAL",4)
+      Global("LK#NindeLoveTalks","GLOBAL",6)
+      Global("LK#NindeLoveTalks","GLOBAL",8)
+      Global("LK#NindeLoveTalks","GLOBAL",12)
+      Global("LK#NindeLoveTalks","GLOBAL",14)
+      Global("LK#NindeLoveTalks","GLOBAL",16)
+      Global("LK#NindeLoveTalks","GLOBAL",18)
+      Global("LK#NindeLoveTalks","GLOBAL",20)
+      Global("LK#NindeLoveTalks","GLOBAL",22)
+      Global("LK#NindeLoveTalks","GLOBAL",26)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalks","GLOBAL",1)
+END
+
+// Romance dialogue #2: after Spellhold
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    GlobalGT("AsylumPlot","GLOBAL",43)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeLoveTalks","GLOBAL",2)
+    Global("LK#NindeLoveTalk2Check","GLOBAL",0)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeLoveTalksTimer","GLOBAL",600)
+    SetGlobal("LK#NindeLoveTalk2Check","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeLoveTalks","GLOBAL",2)
+    Global("LK#NindeLoveTalk2Check","GLOBAL",1)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalks","GLOBAL",1)
+END
+
+
+// Romance dialogue #6.2, on waking up
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeLT6.2WakeUp","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind")
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Encounterrrr.
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(7)
+      AreaCheck("AR0300")
+      AreaCheck("AR0400")
+      AreaCheck("AR0500")
+      AreaCheck("AR0700")
+      AreaCheck("AR0800")
+      AreaCheck("AR0900")
+      AreaCheck("AR1000")
+    OR(2)
+    	Global("LK#NindeLoveTalks","GLOBAL",30)
+    	Global("LK#NindeFriendTalks","GLOBAL",14)
+    OR(2)
+    	Global("LK#NindeRomanceActive","GLOBAL",2)
+    	Global("LK#NindeFriendshipActive","GLOBAL",1)
+    Global("chapter","GLOBAL",6)
+    Global("LK#Ninde_Encounter","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#Ninde_Encounter","GLOBAL",1)
+END
+
+IF 
+    Global("LK#Ninde_Encounter","GLOBAL",1)
+    Global("LK#NindeRomanceActive","GLOBAL",2)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#Ninde_Encounter","GLOBAL",1)
+    RealSetGlobalTimer("LK#NindeLoveTalksTimer","GLOBAL",50)
+    CreateCreatureOffScreen("LK#NIMES",1)
+    ActionOverride("LK#NIMES",MoveToObject(Player1)
+    ActionOverride("LK#NIMES",StartDialogueNoSet(Player1)
+END
+
+IF 
+    Global("LK#Ninde_Encounter","GLOBAL",1)
+    Global("LK#NindeFriendshipActive","GLOBAL",1)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#Ninde_Encounter","GLOBAL",1)
+    RealSetGlobalTimer("LK#NindeFriendTalksTimer","GLOBAL",50)
+    CreateCreatureOffScreen("LK#NIMES",1)
+    ActionOverride("LK#NIMES",MoveToObject(Player1)
+    ActionOverride("LK#NIMES",StartDialogueNoSet(Player1)
+END
+
+// Lovetalk #16
+IF
+    Global("LK#NindeEncounter_fight","ARLKN1",2)
+    InParty("Ninde")
+    See(Player1)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeRomanceActive","GLOBAL",2)
+    Global("LK#NindeLoveTalks","GLOBAL",30)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalks","GLOBAL",1)
+END
+
+
+// Lovetalk #18 (morning after)
+IF
+    PartyRested()
+    InParty("Ninde")
+    See(Player1)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeRomanceActive","GLOBAL",2)
+    Global("LK#NindeLoveTalks","GLOBAL",34)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalks","GLOBAL",1)
+END
+
+
+// ---------------------------------------------
+// Friendship
+// ---------------------------------------------
+// Friendship Dialogues
+IF
+    InParty(Myself)
+    AreaCheck("AR1600")
+    Global("LK#NindeFriendshipActive","GLOBAL",1)
+    Global("LK#NindeFriendTalks","GLOBAL",0)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeFriendTalksTimer","GLOBAL",300)
+    SetGlobal("LK#NindeFriendTalks","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeFriendTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(8)
+      Global("LK#NindeFriendTalks","GLOBAL",1)
+      Global("LK#NindeFriendTalks","GLOBAL",3)
+      Global("LK#NindeFriendTalks","GLOBAL",5)
+      Global("LK#NindeFriendTalks","GLOBAL",7)
+      Global("LK#NindeFriendTalks","GLOBAL",9)
+      Global("LK#NindeFriendTalks","GLOBAL",11)
+      Global("LK#NindeFriendTalks","GLOBAL",13)
+      Global("LK#NindeFriendTalks","GLOBAL",15)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeFriendTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(5)
+      Global("LK#NindeFriendTalks","GLOBAL",4)
+      Global("LK#NindeFriendTalks","GLOBAL",6)
+      Global("LK#NindeFriendTalks","GLOBAL",8)
+      Global("LK#NindeFriendTalks","GLOBAL",10)
+      Global("LK#NindeFriendTalks","GLOBAL",12)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeFriendTalks","GLOBAL",1)
+END
+
+// Friendship dialogue #2: after Spellhold
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    GlobalGT("AsylumPlot","GLOBAL",43)
+    RealGlobalTimerExpired("LK#NindeFriendTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeFriendTalks","GLOBAL",2)
+    Global("LK#NindeFriendTalk2Check","GLOBAL",0)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeFriendTalksTimer","GLOBAL",600)
+    SetGlobal("LK#NindeFriendTalk2Check","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeFriendTalksTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeFriendTalks","GLOBAL",2)
+    Global("LK#NindeFriendTalk2Check","GLOBAL",1)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeFriendTalks","GLOBAL",1)
+END
+
+// In Underdark
+
+IF
+    InParty(Myself)
+    See(Player1)
+    AreaCheck("AR2100")
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeUnderdarkTalk","GLOBAL",0)
+    OR(3) 
+      Global("LK#NindeFriendshipActive","GLOBAL",1)
+      Global("LK#NindeRomanceActive","GLOBAL",1)
+	  Global("LK#NindeRomanceActive","GLOBAL",2)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeUnderdarkTimer","GLOBAL",2700) 
+    IncrementGlobal("LK#NindeUnderdarkTalk","GLOBAL",1)
+END
+
+IF
+    RealGlobalTimerExpired("LK#NindeUnderdarkTimer","GLOBAL")
+    InParty(Myself)
+    See(Player1)
+    OR(4)
+      AreaCheck("AR2100")
+      AreaCheck("AR2200")
+      AreaCheck("AR2202")
+      AreaCheck("AR2203")
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeUnderdarkTalk","GLOBAL",1)
+    OR(3) 
+      Global("LK#NindeFriendshipActive","GLOBAL",1)
+      Global("LK#NindeRomanceActive","GLOBAL",1)
+	  Global("LK#NindeRomanceActive","GLOBAL",2)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeUnderdarkTalk","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeUnderdarkTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeUnderdarkTalk","GLOBAL",2)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Friendtalk #9
+IF
+    Global("LK#NindeEncounter_fight","ARLKN1",2)
+    InParty("Ninde")
+    See(Player1)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeFriendshipActive","GLOBAL",1)
+    Global("LK#NindeFriendTalks","GLOBAL",14)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeFriendTalks","GLOBAL",1)
+END
+
+// ---------------------------------------------
+// NPC Banters
+// ---------------------------------------------
+// Ninde/Haer'Dalis banter, Tree of Life
+IF
+    InParty(Myself)
+    AreaCheck("AR0085")
+    InParty("Haerdalis")
+    See("Haerdalis")
+    !StateCheck("Haerdalis",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeHaerdalis","GLOBAL",4)
+END
+
+IF
+    InParty(Myself)
+    AreaCheck("AR0085")
+    InParty("Haerdalis")
+    See("Haerdalis")
+    !StateCheck("Haerdalis",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeHaerdalis","GLOBAL",4)
+THEN
+  RESPONSE #100
+    Interact("Haerdalis")
+END
+
+// Ninde/Keldorn banter, Keldorn hurt
+IF
+    InParty(Myself)
+    InParty("Keldorn")
+    See("Keldorn")
+    !StateCheck("Keldorn",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    HPPercentLT("Keldorn",80)
+    Global("LK#NindeKeldorn","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeKeldorn","GLOBAL",2)
+END
+
+IF
+    InParty(Myself)
+    InParty("Keldorn")
+    See("Keldorn")
+    !StateCheck("Keldorn",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    HPPercentLT("Keldorn",80)
+    Global("LK#NindeKeldorn","GLOBAL",2)
+THEN
+  RESPONSE #100
+    Interact("Keldorn")
+END
+
+
+// Ninde/Imoen banter, Shadow Thieves
+IF
+    InParty(Myself)
+    InParty("Imoen2")
+    See("Imoen2")
+    !StateCheck("Imoen2",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    OR(2)
+       AreaCheck("AR0305")
+       AreaCheck("AR0321")
+    Global("LK#NindeImoen","GLOBAL",2)
+    Global("LK#Ninde_imoenthieves","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#Ninde_imoenthieves","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    InParty("Imoen2")
+    See("Imoen2")
+    !StateCheck("Imoen2",CD_STATE_NOTVALID)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    Global("LK#Ninde_imoenthieves","GLOBAL",1)
+THEN
+  RESPONSE #100
+    Interact("Imoen2")
+END
+
+
+
+// ---------------------------------------------
+// Scenery comments
+// ---------------------------------------------
+// Most Noble Order of the Radiant Heart
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    AreaCheck("AR0903")
+    Global("LK#Ninde_radiantheart","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#Ninde_radiantheart","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#Ninde_radiantheart","GLOBAL",1)
+THEN
+  RESPONSE #100
+    Dialogue(Player1)
+END
+
+// Sahaugan prince dead
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#Ninde_rebeldead","GLOBAL",0)
+    Dead("sahpr2")
+THEN
+  RESPONSE #100
+  	SetGlobal("LK#Ninde_rebeldead","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#Ninde_rebeldead","GLOBAL",1)
+    Dead("sahpr2")
+THEN
+  RESPONSE #100
+	Dialogue(Player1)
+END
+
+// The party are Drow
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("PlayerLooksLikeDrow","GLOBAL",1)
+    Global("LK#Ninde_transformation","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#Ninde_transformation","GLOBAL",1)
+    RealSetGlobalTimer("LK#Ninde_transformationTimer","GLOBAL",200)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#Ninde_transformation","GLOBAL",1)
+    RealGlobalTimerExpired("LK#Ninde_transformationTimer","GLOBAL")
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#Ninde_transformation","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#Ninde_transformation","GLOBAL",2)
+THEN
+  RESPONSE #100
+    Dialogue(Player1)
+END
+
+
+// Ninde is drunk
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    CheckStatGT("Ninde",40,INTOXICATION)
+    Global("LK#NindeDrunk","GLOBAL",0)
+THEN
+   RESPONSE #100
+    IncrementGlobal("LK#NindeDrunk","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeDrunk","GLOBAL",1)
+THEN
+  RESPONSE #100
+    Dialogue(Player1)
+END
+
+
+// Dialogue after Bodhi ordeal
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeAbducted","GLOBAL",1)
+    Dead("c6bodhi")
+    CombatCounter(0)
+THEN
+   RESPONSE #100
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END

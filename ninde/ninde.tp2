@@ -1,0 +1,414 @@
+// --------------------------------------------
+// Mod setup
+// --------------------------------------------
+// Basics
+BACKUP ~ninde/backup~
+AUTHOR ~K'aeloree (kae@spellholdstudios.net)~ 
+VERSION ~v2~
+README ~ninde/ninde_readme.html~
+
+
+// --------------------------------------------
+// Ninde NPC Mod v.03
+// --------------------------------------------
+// Component setup
+AUTO_TRA ~ninde/translations/%s~
+LANGUAGE ~English~
+         ~English~
+         ~ninde/translations/english/setup.tra~
+
+BEGIN @0 /* Ninde NPC Mod for BGII */
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mel01.cre~ @1 /* ToB is not installed! Please install the Throne of Bhaal expansion before installing Ninde. */
+
+// Adds custom IsValidForPartyDialogue state used throughout ninde
+APPEND ~STATE.IDS~ // adds custom IsValidForPartyDialogue state
+  ~0x80101FEF CD_STATE_NOTVALID~
+  UNLESS ~CD_STATE_NOTVALID~
+
+// Fixing Imoen's dialogue file
+ACTION_IF FILE_EXISTS_IN_GAME ~mel01.cre~ THEN BEGIN
+  COPY_EXISTING ~interdia.2da~ ~override~
+    SET_2DA_ENTRY 17 1 2 ~BIMOEN2~ // fixes ToB version
+    BUT_ONLY_IF_IT_CHANGES
+END ELSE BEGIN
+  APPEND ~interdia.2da~ ~IMOEN       BIMOEN2~ // fixes SoA version
+    UNLESS ~BIMOEN2~
+END
+
+// new state needed to fix Dead() triggers that don't use DVs
+APPEND ~state.ids~ ~0x00000FC0 STATE_REALLY_DEAD~ UNLESS ~0x00000FC0 STATE_REALLY_DEAD~
+
+// Shoutids.ids + gtimes.ids
+INCLUDE ~ninde/macros/ids_entries_shoutids.tph~
+INCLUDE ~ninde/macros/ids_entries_gtimes.tph~
+
+// Compiling dialogue...
+COMPILE ~ninde/dialogue/lk#nind.d~
+COMPILE ~ninde/dialogue/lk#nindj.d~
+COMPILE ~ninde/dialogue/blk#nind.d~
+COMPILE ~ninde/dialogue/lk#nindp.d~
+COMPILE ~ninde/dialogue/quest.d~
+
+COMPILE ~ninde/dialogue/lk#ni25.d~
+COMPILE ~ninde/dialogue/lk#ni25j.d~
+COMPILE ~ninde/dialogue/blk#ni25.d~
+COMPILE ~ninde/dialogue/lk#ni25p.d~
+
+// Compiling scripts...
+COMPILE ~ninde/scripts/lk#nins.baf~
+COMPILE ~ninde/scripts/lk#nind.baf~
+COMPILE ~ninde/scripts/lk#nicut.baf~
+COMPILE ~ninde/scripts/lk#nict1.baf~
+COMPILE ~ninde/scripts/lk#nict2.baf~
+COMPILE ~ninde/scripts/lk#nict3.baf~
+COMPILE ~ninde/scripts/lk#nict4.baf~
+COMPILE ~ninde/scripts/lk#nict5.baf~
+COMPILE ~ninde/scripts/lk#nict6.baf~
+COMPILE ~ninde/scripts/lk#npal.baf~
+
+COMPILE ~ninde/scripts/lk#ni25.baf~
+COMPILE ~ninde/scripts/lk#ni25d.baf~
+COMPILE ~ninde/scripts/lk#niwr1.baf~
+
+EXTEND_BOTTOM ~ar0801.bcs~   ~ninde/scripts/ar0801.baf~
+EXTEND_BOTTOM ~ar0809.bcs~   ~ninde/scripts/ar0809.baf~
+EXTEND_BOTTOM ~ar2812.bcs~   ~ninde/scripts/ar2812.baf~
+EXTEND_BOTTOM ~bodhiamb.bcs~ ~ninde/scripts/bodhiamb.baf~
+EXTEND_BOTTOM ~haerda.bcs~   ~ninde/scripts/haerda.baf~
+EXTEND_BOTTOM ~nalia.bcs~    ~ninde/scripts/nalia.baf~
+
+EXTEND_TOP ~ar6200.bcs~ ~ninde/scripts/ar6200.baf~
+EXTEND_BOTTOM ~cut218g.bcs~ ~ninde/scripts/lk#niwr2.baf~
+
+// Crooked Cane script patching, thanks to DavidW @ G3
+COPY_EXISTING ~ar0021.are~ ~override~
+  WRITE_EVALUATED_ASCII 0x94 ~ar0021~
+  BUT_ONLY
+
+EXTEND_TOP ~ar0021.bcs~ ~ninde/scripts/ar0021.baf~
+
+// BG2EE
+
+ADD_JOURNAL EXISTING TITLE (#74337) @26 @68 USING ~ninde/translations/%LANGUAGE%/lk#nindp.tra~
+
+// Copying images and creatures
+COPY ~ninde/images~ ~override~
+ACTION_IF FILE_EXISTS_IN_GAME ~BUYBUTT.BAM~ THEN BEGIN
+  COPY ~ninde/images/bgee~ ~override~
+END
+
+COPY ~ninde/creatures/lk#nind.cre~ ~override/lk#nind.cre~
+  SAY NAME1 @2 /* Ninde */
+  SAY NAME2 @3 /* Ninde Amblecrown */
+  WRITE_EVALUATED_ASCII DIALOG          ~lk#nind~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR ~Ninde~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~lk#nins~ #8
+  SAY BIO @4 /* "The past is precisely that -- the past." Ninde says, with a pointed yawn. Despite her initial reluctance, you soon manage to glean a little more information about the sun elf's past. Namely that although she was born in the Elven forest of Cormanthor, she was raised in Waterdeep, by a wealthy family of human traders, who spared no expense on her magical education. But although she developed a taste for the finer things in life, she was distinctly less delighted by the prospect of having to work for them To her adoptive families chagrin, she fell in with the city's seedier element, and began to delve into the shadier side of arcane lore. Soon she went from Waterdhavian high society's most desirable young ingenue to a regular among the ghosts and rats of its criminal underbelly. And indeed, whatever secrets she unearthed there have left their mark on the elf. Her eyes tell you more of the tragedy, darkness, and romance of her past then the secretive Ninde herself ever would. */
+  SAY MORALE @5 /* I don't think Ninde's going to be staying around for this one. */
+  SAY LEADER @6 /* I can't help feeling that this will be an awful lot of work. Unless, of course, as leader, I can lead us to a nice luxurious Inn, and make us stay there. Forever. */
+  SAY TIRED @7 /* I may be a party animal, but even *I* have my limit. */
+  SAY BORED @8 /* Well, some one run me an ale. I could get used to all this sitting around. */
+  SAY BATTLE_CRY1 @9 /* Shar give us victory! And if she won't, I will! */
+  SAY BATTLE_CRY2 @10 /* Ugh. Battlecrys. How common. */
+  SAY BATTLE_CRY3 @11 /* All for one, and everyone for me! */
+  SAY BATTLE_CRY4 @12 /* I'll scratch your face up, I will! */
+  SAY BATTLE_CRY5 @13 /* Death to the ugly! And that means you. */
+  SAY DYING @14 /* No... this can't - be it... */
+  SAY HURT @15 /* I need a healer. And quickly, or I'll need a funeral gown as well. */
+  SAY AREA_FOREST @16 /* Ugh. A Ninde out of the city is a fish out of water. */
+  SAY AREA_CITY @17 /* Ah, the city... at least we aren't in Athkatla, or the city of Neverwinter... bah. */
+  SAY AREA_DUNGEON @18 /* Dank, dark, disgusting dungeons. I must alleviate the awfulness with alliteration! */ 
+  SAY AREA_NIGHT @19 /* The stars like like pearls in the hair of a Calim girl... */ 
+  SAY AREA_DAY @20 /* bbbt */ 
+  SAY SELECT_COMMON1 @21 /* Yes, dear? */ 
+  SAY SELECT_COMMON2 @22 /* And what does the Bhaalspawn want? */ 
+  SAY SELECT_COMMON3 @23 /* Mmhmm? */ 
+  SAY SELECT_COMMON4 @24 /* I suppose you've got an order or two to give me, hmm? */ 
+  SAY SELECT_COMMON5 @25 /* What is it you want? */ 
+  SAY SELECT_COMMON6 @26 /* Yes, angel? */ 
+  SAY SELECT_ACTION1 @27 /* You slave driver, you. */ 
+  SAY SELECT_ACTION2 @28 /* Mmm... your wish is my command. */ 
+  SAY SELECT_ACTION3 @29 /* (Sarcastic) With a smile on my face and a song in my heart. */ 
+  SAY SELECT_ACTION4 @30 /* It's as good as done. */ 
+  SAY SELECT_ACTION5 @31 /* And what if I say no, hmm? */ 
+  SAY SELECT_ACTION6 @32 /* In my own time, darling. */ 
+  SAY SELECT_ACTION7 @33 /* Ready and willing. For *anything*. */ 
+  SAY SELECT_RARE1 @34 /* I'll do it, but only because I love you so *very* much. */ 
+  SAY SELECT_RARE2 @35 /* Do it yourself! I just shaped my nails. */ 
+  SAY CRITICAL_HIT @36 /* Hah! That should send you running to mother. */ 
+  SAY CRITICAL_MISS @37 /* Oh... I hope no-one saw *that*. */ 
+  SAY TARGET_IMMUNE @38 /* Blindly walloping at my foe with a dead canary would be more effective than using this weapon. */ 
+  SAY INVENTORY_FULL @39 /* All this lifting and carrying... I'm sure you can find somewhere better suited to it than me. */ 
+  SAY HAPPY @40 /* This may all be a happy mistake, but you seem to be managing this party quite adroitly, for a ham-fisted northern mammet. */ 
+  SAY UNHAPPY_ANNOYED @41 /* Dear me. You're getting this all wrong. */ 
+  SAY UNHAPPY_SERIOUS @42 /* We help kittens. We help orphans. We help Helmites. When are we going to help ourselves? */ 
+  SAY SPELL_DISRUPTED @43 /* It's very hard to concentrate on my spell when I'm having my brains bashed out! */ 
+  SAY SET_A_TRAP @44 /* Your legs will be mine! */ 
+  SAY HIDDEN_IN_SHADOWS @45 /* Ah, the joys of black silk. */ 
+  SAY PICKED_POCKET @46 /* Why have you got me doing this? I'm a mage, not a mendicant. */ 
+
+COPY ~ninde/creatures/lk#ni25.cre~ ~override/lk#ni25.cre~
+  SAY NAME1 @2 /* Ninde */
+  SAY NAME2 @3 /* Ninde Amblecrown */
+  WRITE_EVALUATED_ASCII DIALOG          ~lk#ni25~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR  ~Ninde~ /* Ninde */ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~lk#ni25~ #8
+  SAY BIO @4 /* "The past is precisely that -- the past." Ninde says, with a pointed yawn. Despite her initial reluctance, you soon manage to glean a little more information about the sun elf's past. Namely that although she was born in the Elven forest of Cormanthor, she was raised in Waterdeep, by a wealthy family of human traders, who spared no expense on her magical education. But although she developed a taste for the finer things in life, she was distinctly less delighted by the prospect of having to work for them To her adoptive families chagrin, she fell in with the city's seedier element, and began to delve into the shadier side of arcane lore. Soon she went from Waterdhavian high society's most desirable young ingenue to a regular among the ghosts and rats of its criminal underbelly. And indeed, whatever secrets she unearthed there have left their mark on the elf. Her eyes tell you more of the tragedy, darkness, and romance of her past then the secretive Ninde herself ever would. */
+  SAY MORALE @5 /* I don't think Ninde's going to be staying around for this one. */ 
+  SAY LEADER @6 /* I can't help feeling that this will be an awful lot of work. Unless, of course, as leader, I can lead us to a nice luxurious Inn, and make us stay there. Forever. */
+  SAY TIRED @7 /* I may be a party animal, but even *I* have my limit. */
+  SAY BORED @8 /* Well, some one run me an ale. I could get used to all this sitting around. */ 
+  SAY BATTLE_CRY1 @9 /* Shar give us victory! And if she won't, I will! */ 
+  SAY BATTLE_CRY2 @10 /* Ugh. Battlecrys. How common. */ 
+  SAY BATTLE_CRY3 @11 /* All for one, and everyone for me! */ 
+  SAY BATTLE_CRY4 @12 /* I'll scratch your face up, I will! */ 
+  SAY BATTLE_CRY5 @13 /* Death to the ugly! And that means you. */ 
+  SAY DYING @14 /* No... this can't - be it... */ 
+  SAY HURT @15 /* I need a healer. And quickly, or I'll need a funeral gown as well. */ 
+  SAY AREA_FOREST @16 /* Ugh. A Ninde out of the city is a fish out of water. */ 
+  SAY AREA_CITY @17 /* Ah, the city... at least we aren't in Athkatla, or the city of Neverwinter... bah. */ 
+  SAY AREA_DUNGEON @18 /* Dank, dark, disgusting dungeons. I must alleviate the awfulness with alliteration! */ 
+  SAY AREA_NIGHT @19 /* The stars like like pearls in the hair of a Calim girl... */ 
+  SAY AREA_DAY @20 /* bbbt */ 
+  SAY SELECT_COMMON1 @21 /* Yes, dear? */ 
+  SAY SELECT_COMMON2 @22 /* And what does the Bhaalspawn want? */ 
+  SAY SELECT_COMMON3 @23 /* Mmhmm? */ 
+  SAY SELECT_COMMON4 @24 /* I suppose you've got an order or two to give me, hmm? */ 
+  SAY SELECT_COMMON5 @25 /* What is it you want? */ 
+  SAY SELECT_COMMON6 @26 /* Yes, angel? */ 
+  SAY SELECT_ACTION1 @27 /* You slave driver, you. */ 
+  SAY SELECT_ACTION2 @28 /* Mmm... your wish is my command. */ 
+  SAY SELECT_ACTION3 @29 /* (Sarcastic) With a smile on my face and a song in my heart. */ 
+  SAY SELECT_ACTION4 @30 /* It's as good as done. */ 
+  SAY SELECT_ACTION5 @31 /* And what if I say no, hmm? */ 
+  SAY SELECT_ACTION6 @32 /* In my own time, darling. */ 
+  SAY SELECT_ACTION7 @33 /* Ready and willing. For *anything*. */ 
+  SAY SELECT_RARE1 @34 /* I'll do it, but only because I love you so *very* much. */ 
+  SAY SELECT_RARE2 @35 /* Do it yourself! I just shaped my nails. */ 
+  SAY CRITICAL_HIT @36 /* Hah! That should send you running to mother. */ 
+  SAY CRITICAL_MISS @37 /* Oh... I hope no-one saw *that*. */ 
+  SAY TARGET_IMMUNE @38 /* Blindly walloping at my foe with a dead canary would be more effective than using this weapon. */ 
+  SAY INVENTORY_FULL @39 /* All this lifting and carrying... I'm sure you can find somewhere better suited to it than me. */ 
+  SAY HAPPY @40 /* This may all be a happy mistake, but you seem to be managing this party quite adroitly, for a ham-fisted northern mammet. */ 
+  SAY UNHAPPY_ANNOYED @41 /* Dear me. You're getting this all wrong. */ 
+  SAY UNHAPPY_SERIOUS @42 /* We help kittens. We help orphans. We help Helmites. When are we going to help ourselves? */ 
+  SAY SPELL_DISRUPTED @43 /* It's very hard to concentrate on my spell when I'm having my brains bashed out! */ 
+  SAY SET_A_TRAP @44 /* Your legs will be mine! */ 
+  SAY HIDDEN_IN_SHADOWS @45 /* Ah, the joys of black silk. */ 
+  SAY PICKED_POCKET @46 /* Why have you got me doing this? I'm a mage, not a mendicant. */ 
+
+
+  
+// Creatures
+COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#niaon.cre~
+  SAY NAME1 @47 /* Aondrial */
+  SAY NAME2 @47 /* Aondrial */
+  SAY INITIAL_MEETING ~~ []
+  SAY BATTLE_CRY1 ~~ []
+  SAY SELECT_COMMON1 ~~ []
+  SAY SELECT_COMMON2 ~~ []
+  SAY SELECT_COMMON3 ~~ []
+  SAY SELECT_COMMON4 ~~ []
+  SAY SELECT_ACTION4 ~~ []
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_CRE_ITEM ~potn46~ #1 #0 #0 ~IDENTIFIED~ ~inv1~
+  ADD_CRE_ITEM ~potn55~ #1 #0 #0 ~IDENTIFIED~ ~inv2~
+  ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv6~
+  ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+  
+COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nidil.cre~
+  SAY NAME1 @49 /* Lady Dilatuvel */
+  SAY NAME2 @49 /* Lady Dilatuvel */
+  SAY INITIAL_MEETING ~~ []
+  SAY BATTLE_CRY1 ~~ []
+  SAY SELECT_COMMON1 ~~ []
+  SAY SELECT_COMMON2 ~~ []
+  SAY SELECT_COMMON3 ~~ []
+  SAY SELECT_COMMON4 ~~ []
+  SAY SELECT_ACTION4 ~~ []
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_KNOWN_SPELL ~sppr315~ #4 ~priest~ // cure medium wounds
+  ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
+  ADD_MEMORIZED_SPELL ~sppr315~ #4 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr401~ #6 ~priest~ (2)
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
+  ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
+  ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+
+COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nijam.cre~
+  SAY NAME1 @50 /* Jamema */
+  SAY NAME2 @50 /* Jamema */
+  SAY INITIAL_MEETING ~~ []
+  SAY BATTLE_CRY1 ~~ []
+  SAY SELECT_COMMON1 ~~ []
+  SAY SELECT_COMMON2 ~~ []
+  SAY SELECT_COMMON3 ~~ []
+  SAY SELECT_COMMON4 ~~ []
+  SAY SELECT_ACTION4 ~~ []
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_KNOWN_SPELL ~sppr315~ #4 ~priest~ // cure medium wounds
+  ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
+  ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
+  ADD_KNOWN_SPELL ~sppr111~ #4 ~priest~ // armor of faith
+  ADD_KNOWN_SPELL ~sppr113~ #5 ~priest~ // doom
+  ADD_MEMORIZED_SPELL ~sppr315~ #4 ~priest~ (3)
+  ADD_MEMORIZED_SPELL ~sppr401~ #6 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr214~ #5 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr111~ #4 ~priest~ (2)
+  ADD_MEMORIZED_SPELL ~sppr113~ #5 ~priest~ (1)
+  ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
+  ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+
+COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#nipru.cre~
+  SAY NAME1 @51 /* Sir Prufrock */
+  SAY NAME2 @51 /* Sir Prufrock */
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
+  ADD_KNOWN_SPELL ~sppr111~ #4 ~priest~ // armor of faith
+  ADD_KNOWN_SPELL ~sppr113~ #5 ~priest~ // doom
+  ADD_MEMORIZED_SPELL ~sppr214~ #5 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr111~ #4 ~priest~ (2)
+  ADD_MEMORIZED_SPELL ~sppr113~ #5 ~priest~ (1)
+  ADD_CRE_ITEM ~potn46~ #1 #0 #0 ~IDENTIFIED~ ~inv1~
+  ADD_CRE_ITEM ~potn52~ #1 #0 #0 ~IDENTIFIED~ ~inv3~
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
+  ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
+  ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+
+COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niwin.cre~
+  SAY NAME1 @52 /* Sir Windhover */
+  SAY NAME2 @52 /* Sir Windhover */
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
+  ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv6~
+  ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+
+COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niarc.cre~
+  SAY NAME1 @53 /* Lord Archonson */
+  SAY NAME2 @53 /* Lord Archonson */
+  WRITE_EVALUATED_ASCII DIALOG                 ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR               ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE        ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_CLASS           ~~ #8
+  WRITE_EVALUATED_ASCII SCRIPT_DEFAULT         ~lk#npal~ #8
+  ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
+  ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
+  ADD_KNOWN_SPELL ~sppr113~ #5 ~priest~ // doom
+  ADD_MEMORIZED_SPELL ~sppr401~ #6 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr214~ #5 ~priest~ (1)
+  ADD_MEMORIZED_SPELL ~sppr113~ #5 ~priest~ (3)
+  ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
+  ADD_CRE_ITEM ~potn11~ #1 #0 #0 ~IDENTIFIED~ ~inv7~
+
+COPY_EXISTING ~messen.cre~ ~override/lk#nimes.cre~
+  SAY NAME1 @54 /* Messenger */
+  SAY NAME2 @54 /* Messenger */
+  WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8
+
+COPY_EXISTING ~stolethf.cre~ ~override/lk#nithf.cre~
+  SAY NAME1 @55 /* Shadow Thief */
+  SAY NAME2 @55 /* Shadow Thief */
+  WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8
+
+
+// Wraith Scene
+COPY_EXISTING ~tolmag01.cre~ ~override/lk#sykre.cre~
+  SAY NAME1 @56 /* Sykre */
+  SAY NAME2 @57 /* Sykre D'Alysoss */
+  WRITE_EVALUATED_ASCII DIALOG          ~lk#sykre~ #8
+  WRITE_EVALUATED_ASCII DEATHVAR        ~lk#sykre~ #32
+  WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8  
+
+// Items
+COPY ~ninde/items/lk#nankh.itm~ ~override/lk#nankh.itm~
+ SAY NAME1 @58 /* Ankh of Ascension */
+ SAY NAME2 @58 /* Ankh of Ascension */
+ SAY UNIDENTIFIED_DESC @59 /* The Ankh of Ascension
+
+The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde’s neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
+
+This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
+
+ABILITIES:
+
+Wearer immune to poison, disease and level-drain. */
+ SAY DESC @60 /* The Ankh of Ascension
+
+The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde's neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
+
+This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
+
+ABILITIES:
+
+Wearer immune to poison, disease and level-drain. */
+
+
+// Spells (thanks to Icendoan!)
+COPY ~ninde/spells/lk#nisp1.spl~ ~override~
+COPY ~ninde/spells/lk#nisp2.spl~ ~override~
+
+
+// Epilogues
+COPY ~ninde/epilogues/lk#nind1.2da~ ~override/LK#NIFI1.2da~
+   REPLACE ~99999~ @61 /* After their victory at the Throne of Bhaal, Ninde and <CHARNAME> were finally able to discuss their relationship... and its future.  Like so much of what had passed between them, this talk was passionate, troubling, and ultimately inconclusive.  Ninde left him with the vague promise that one day, once she again felt at ease with her own identity, she would return.  Whether that day ever came is unknown, though rumour claims that they met again several years later in Calimport, where Ninde had become deeply embroiled in the local underworld.  Her own life again under control and her fortune no longer tied to that of a more powerful man, Ninde was finally willing to risk once more the relationship that she had hitherto so abruptly concluded.  Legend says that the couple remained in Calimshan thereafter, their relationship as tempestuous as it was close, and if the poets are overly optimistic about their prospects, it is no wonder.  As troubled as the long history of <CHARNAME> and Ninde had been, what lay between them was rich and enduring, and stronger than either had ever anticipated. */
+
+COPY ~ninde/epilogues/lk#nind1.2da~ ~override/LK#NIFI2.2da~
+   REPLACE ~99999~ @62 /* Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after the ascension of her former lover, <CHARNAME>.  Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar.  Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short.  Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited.  She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept. */
+   
+COPY ~ninde/epilogues/lk#nind1.2da~ ~override/LK#NIFI3.2da~
+   REPLACE ~99999~ @63 /* Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after leaving the side of her former lover, <CHARNAME>.  Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar.  Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short.  Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited.  She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept. */
+   
+COPY ~ninde/epilogues/lk#nind1.2da~ ~override/LK#NIFI4.2da~
+   REPLACE ~99999~ @64 /* Ninde left <CHARNAME>'s side not long after their victory at the Throne of Bhaal, adopting a wandering lifestyle for a time.  She was sighted in cities throughout luxurious Calimshan, where she was quick to put her talents to use as one of that nation's most beguiling courtesans.  Those who came to know her said that life had becoming increasingly hollow to the infamous Lady Amblecrown, and before long she disappeared entirely from society.  Accounts vary on what passed in the intervening time, but when Ninde returned, she was a changed woman.  Rarely if ever was she seen during the daylight, and it was whispered that she had finally followed in the footsteps of her erstwhile mistress Bodhi, hoping to stave off madness and death forever.  She ultimately accomplished neither of these things, as her madness was too long engrained to be cast aside so easily, and death... death came all too quickly at the hands of a more powerful rival. */
+
+
+// Appends
+APPEND ~interdia.2da~ ~NINDE BLK#NIND BLK#NI25~
+   UNLESS ~NINDE~
+
+APPEND ~pdialog.2da~ ~NINDE LK#NINDP LK#NINDJ LK#NIND LK#NI25P LK#NI25J LK#NI25D LK#NI25~
+  UNLESS ~NINDE~
+
+
+// Areas
+COPY ~ninde/areas/arlkn1.are~ ~override~
+     
+COMPILE ~ninde/scripts/arlkn1.baf~
+              
+APPEND ~MASTAREA.2da~ ~ARLKN1 value~
+  UNLESS ~ARLKN1~
+
+
+// Audio
+COPY ~ninde/audio/lk#blank.mus~ ~music~
+    
+COPY_EXISTING ~songlist.2da~ ~override~
+  SET_2DA_ENTRY 0 2 3 ~lk#blank.mus~
+    
+LAF HANDLE_AUDIO END

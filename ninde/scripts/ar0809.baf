@@ -1,0 +1,35 @@
+// ---------------------------------------------
+// Deacting and reactivating Ninde
+// ---------------------------------------------
+ IF
+    Global("LK#NindeAbducted","GLOBAL",1)
+    Global("LK#NindeDeactivate","AR0809",0)
+    !Dead("c6bodhi")
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeDeactivate","AR0809",1)
+    Deactivate("Ninde")
+END
+
+IF
+    Global("LK#NindeAbducted","GLOBAL",1)
+    Global("LK#NindeReactivate","AR0809",0)
+    Dead("c6bodhi")
+    !InMyArea([ENEMY])
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeReactivate","AR0809",1)
+    Activate("Ninde")
+END
+
+IF 
+    Global("LK#NindeAbducted","GLOBAL",1)
+    Global("LK#NindeReactivate","AR0809",1)
+    !InMyArea([ENEMY])
+    CombatCounter(0)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeReactivate","AR0809",1)
+    ActionOverride("Ninde",MoveToObject(Player1))
+    ActionOverride("Ninde",StartDialogueNoSet(Player1))
+END

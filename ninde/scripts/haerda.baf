@@ -1,0 +1,38 @@
+// Romance conflict dialogue
+IF
+    InParty(Myself)
+    InParty("Ninde")
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    GlobalGT("LK#NindeLoveTalks","GLOBAL",7)
+    Global("LK#NindeHaerConflict","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindHaerConflict","GLOBAL",1)
+    RealSetGlobalTimer("LK#NindeHaerConflictTimer","GLOBAL",1200)
+END
+
+IF
+    InParty(Myself)
+    InParty("Ninde")
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeHaerConflict","GLOBAL",1)
+    RealGlobalTimerExpired("LK#NindeHaerConflict","GLOBAL")
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeHaerConflict","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeHaerConflict","GLOBAL",2)
+THEN
+  RESPONSE #100
+    Dialogue(Player1)
+END

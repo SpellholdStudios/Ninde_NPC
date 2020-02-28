@@ -1,0 +1,16 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    CutSceneId("Ninde")
+    ActionOverride("suelle2",ForceSpellRES("lk#nisp1",Myself))
+    Wait(4)
+    DisplayStringHead("suelle2",~Seldarine, I call on thee...~)
+    Wait(4)
+    ActionOverride("Ninde",ForceSpellRES("lk#nisp2",Myself))
+    ActionOverride(Player1,ForceSpellRES("lk#nisp2",Myself))
+    ActionOverride("Ninde",PlayDead(250)
+    ActionOverride(Player1,PlayDead(150)
+    SetGlobal("LK#NindeRestoration","GLOBAL",1)
+    EndCutSceneMode()
+END

@@ -1,0 +1,12 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    Wait(1)
+    SetGlobal("LK#NindeEncounter_givingover","ARLKN1",2)
+    ActionOverride("LK#NIPRU",MoveToObject("Ninde"))
+    ActionOverride("LK#NIWIN",MoveToObject("Ninde"))
+    Wait(2)
+    EndCutSceneMode()
+    ActionOverride("Ninde",StartDialogueNoSet(Player1))
+END

@@ -1,0 +1,17 @@
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck("Myself",CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeRestored","GLOBAL",1)
+    Global("LK#NindeRomanceActive","GLOBAL",2)
+    Global("LK#NindeLoveTalksTOB","GLOBAL",0)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    SetGlobal("LK#NindeLoveTalksTOB","GLOBAL",1)
+    StartDialogueNoSet(Player1)
+END

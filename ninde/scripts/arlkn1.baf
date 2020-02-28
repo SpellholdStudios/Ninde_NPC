@@ -1,0 +1,104 @@
+// This is the area script for Ninde's new area encounter!
+
+/*
+IF 
+    Global("LK#Ninde_Encounter","GLOBAL",2)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#Ninde_Encounter","GLOBAL",1)
+    CreateCreature("LK#NINPRU",[518.365],1)
+    CreateCreature("LK#NINWIN",[518.365],1)
+    CreateCreature("LK#NINAON",[552.319],1)
+    CreateCreature("LK#NINDIL",[617.318],1)
+    CreateCreature("LK#NINJAM",[648.366],1)
+    CreateCreature("LK#NINARC",[585.367],1)
+END
+
+IF
+    Global("LK#Ninde_Encounter","GLOBAL",3)
+THEN
+  RESPONSE #100
+    StartCutSceneMode()
+    StartCutScene("lk#nict1")
+END  */
+
+
+// Aerie
+IF
+    Global("LK#NindeEncounter_givingover","ARLKN1",3)
+    !InMyArea("Ninde")
+    InParty("Aerie")
+    !StateCheck("Aerie",CD_STATE_NOTVALID)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeEncounter_givingover","ARLKN1",4)
+    ActionOverride("Aerie",StartDialogueNoSet(Player1))
+END
+
+// Keldorn
+IF
+    Global("LK#NindeEncounter_givingover","ARLKN1",3)
+    !InMyArea("Ninde")
+    OR(2)
+      !InParty("Aerie")
+      StateCheck("Aerie",CD_STATE_NOTVALID)
+    InParty("Keldorn")
+    !StateCheck("Keldorn",CD_STATE_NOTVALID)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeEncounter_givingover","ARLKN1",4)
+    ActionOverride("Keldorn",StartDialogueNoSet(Player1))
+END
+
+// Mazzy
+IF
+    Global("LK#NindeEncounter_givingover","ARLKN1",3)
+    !InMyArea("Ninde")
+    OR(2)
+      !InParty("Aerie")
+      StateCheck("Aerie",CD_STATE_NOTVALID)
+    OR(2)
+      InParty("Keldorn")
+      StateCheck("Keldorn",CD_STATE_NOTVALID)
+    InParty("Mazzy")
+    !StateCheck("Mazzy",CD_STATE_NOTVALID)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeEncounter_givingover","ARLKN1",4)
+    ActionOverride("Mazzy",StartDialogueNoSet(Player1))
+END
+
+// Korgan
+IF
+    Global("LK#NindeEncounter_givingover","ARLKN1",3)
+    !InMyArea("Ninde")
+    OR(2)
+      !InParty("Aerie")
+      StateCheck("Aerie",CD_STATE_NOTVALID)
+    OR(2)
+      InParty("Keldorn")
+      StateCheck("Keldorn",CD_STATE_NOTVALID)
+    OR(2)
+      InParty("Mazzy")
+      !StateCheck("Mazzy",CD_STATE_NOTVALID)
+    InParty("Korgan")
+    !StateCheck("Korgan",CD_STATE_NOTVALID)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeEncounter_givingover","ARLKN1",4)
+    ActionOverride("Korgan",StartDialogueNoSet(Player1))
+END
+
+// Fight!
+IF
+    Global("LK#NindeEncounter_fight","ARLKN1",1)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeEncounter_fight","ARLKN1",1)
+    ActionOverride("LK#NIPRU",Enemy())
+    ActionOverride("LK#NIWIN",Enemy())
+    ActionOverride("LK#NIAON",Enemy())
+    ActionOverride("LK#NIDIL",Enemy())
+    ActionOverride("LK#NIJAM",Enemy())
+    ActionOverride("LK#NIARC",Enemy())
+END

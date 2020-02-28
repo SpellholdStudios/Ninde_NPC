@@ -1,0 +1,23 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    ActionOverride("LK#NIPRU",FaceObject(Player1))
+    ActionOverride("LK#NIWIN",FaceObject(Player1))
+    ActionOverride("LK#NIAON",FaceObject(Player1))
+    ActionOverride("LK#NIDIL",FaceObject(Player1))
+    ActionOverride("LK#NIJAM",FaceObject(Player1))
+    ActionOverride("LK#NIARC",FaceObject(Player1))
+    ActionOverride(Player1,FaceObject("LK#NIARC"))
+    ActionOverride(Player2,FaceObject("LK#NIARC"))
+    ActionOverride(Player3,FaceObject("LK#NIARC"))
+    ActionOverride(Player4,FaceObject("LK#NIARC"))
+    ActionOverride(Player5,FaceObject("LK#NIARC"))
+    ActionOverride(Player6,FaceObject("LK#NIARC"))
+    FadeFromColor([20.0],0)
+//    ActionOverride("Ninde",MoveToObject("LK#NIARC"))
+    ActionOverride("LK#NIARC",StartDialogueNoSet(Player1))
+    EndCutSceneMode()
+END
+

@@ -1,0 +1,20 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    ActionOverride("LK#NIPRU",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIWIN",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIAON",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIDIL",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIJAM",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIARC",MoveToPoint([1175.25]))
+    ActionOverride("Ninde",MoveToPoint([1175.25]))
+    ActionOverride("LK#NIPRU",DestroySelf())
+    ActionOverride("LK#NIWIN",DestroySelf())
+    ActionOverride("LK#NIAON",DestroySelf())
+    ActionOverride("LK#NIDIL",DestroySelf())
+    ActionOverride("LK#NIJAM",DestroySelf())
+    ActionOverride("LK#NIARC",DestroySelf())
+    ActionOverride("Ninde",DestroySelf())
+    EndCutSceneMode()
+END

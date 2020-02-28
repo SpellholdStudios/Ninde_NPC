@@ -1,0 +1,26 @@
+IF
+    InParty("Ninde")
+    See("Ninde")
+    !StateCheck("Nalia",CD_STATE_NOTVALID)
+    !StateCheck("Ninde",CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    PartyRested()
+    Global("LK#NindeNalia","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeNalia","GLOBAL",1)
+END
+
+IF
+    InParty("Ninde")
+    See("Ninde")
+    !StateCheck("Nalia",CD_STATE_NOTVALID)
+    !StateCheck("Ninde",CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeNalia","GLOBAL",1)
+THEN
+  RESPONSE #100
+    Interact("Ninde")
+END

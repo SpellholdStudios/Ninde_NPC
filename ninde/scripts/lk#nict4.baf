@@ -1,0 +1,18 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    CreateCreature("lk#nithf",[4890.2070],5)
+    ActionOverride("lk#nithf",MoveToObject("Ninde"))
+    Wait(2)
+    ActionOverride("Ninde",LeaveParty())
+    SetGlobal("LK#NindeJoined","GLOBAL",0)
+    SetGlobal("LK#NindeGivenAran","GLOBAL",1)
+    ActionOverride("lk#nithf",MoveToPoint([4890.2070]))
+    ActionOverride("lk#nind",MoveToPoint([4890.2070]))
+    Wait(2)
+    ActionOverride("lk#nithf",DestroySelf())
+    ActionOverride("lk#nind",DestroySelf())
+    ActionOverride("Aran",StartDialogueNoSet(Player1))
+END

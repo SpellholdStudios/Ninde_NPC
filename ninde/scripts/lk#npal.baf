@@ -1,0 +1,203 @@
+// Spells
+IF
+  HPPercentLT(Myself,60)
+  HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+THEN
+  RESPONSE #100
+    Spell(Myself,CLERIC_CURE_MEDIUM_WOUNDS)
+END
+
+IF
+  HPPercentLT(Myself,40)
+  HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
+THEN
+  RESPONSE #100
+    Spell(Myself,CLERIC_CURE_SERIOUS_WOUNDS)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  HaveSpell(CLERIC_ARMOR_OF_FAITH)
+THEN
+  RESPONSE #100
+    Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
+THEN
+  RESPONSE #100
+    Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  HaveSpell(CLERIC_DOOM)
+THEN
+  RESPONSE #100
+    Spell(NearestEnemyOf(Myself),CLERIC_DOOM)
+END
+
+
+// Potions
+IF
+  Global("StoneFormPotion","LOCALS",0)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN46",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    SetGlobal("StoneFormPotion","LOCALS",1)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN46",Myself)
+END
+
+IF
+  HPPercentLT(Myself,50)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN55",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN55",Myself)
+END
+
+IF
+  HPPercentLT(Myself,50)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN52",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN52",Myself)
+END
+
+IF
+  HPPercentLT(Myself,50)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN08",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN08",Myself)
+END
+
+IF
+  HitBy([ANYONE],CRUSHING)
+  Global("GiantStrengthPotion","LOCALS",0)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN05",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    SetGlobal("GiantStrengthPotion","LOCALS",1)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN05",Myself)
+END
+
+IF
+  HitBy([ANYONE],CRUSHING)
+  Global("GiantStrengthPotion","LOCALS",0)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN07",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    SetGlobal("GiantStrengthPotion","LOCALS",1)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN07",Myself)
+END
+
+IF
+  HPPercentLT(Myself,60)
+  Global("InvulnerabilityPotion","LOCALS",0)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN11",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    SetGlobal("InvulnerabilityPotion","LOCALS",1)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN11",Myself)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Allegiance(Myself,ENEMY)
+  Global("HastePotion","LOCALS",0)
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN14",Myself)
+THEN
+  RESPONSE #100
+    SetGlobal("HastePotion","LOCALS",1)
+    SetGlobalTimer("SawEnemy","LOCALS",3)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Allegiance(Myself,ENEMY)
+  Global("HastePotion","LOCALS",1)
+  GlobalTimerExpired("SawEnemy","LOCALS")
+  !GlobalTimerNotExpired("DrankPotionTimer","LOCALS")
+  HasItem("POTN14",Myself)
+THEN
+  RESPONSE #100
+    SetGlobalTimer("DrankPotionTimer","LOCALS",ONE_ROUND)
+    SetGlobal("HastePotion","LOCALS",2)
+    DisplayStringHead(Myself,46150) // 'quaffs a potion'
+    UseItem("POTN14",Myself)
+END
+
+IF
+  HPPercentLT(Myself,25)
+  HPGT(Myself,1)
+  !StateCheck(Myself,STATE_REALLY_DEAD)
+  Global("Whined","LOCALS",0)
+  See(NearestMyGroupOfType)
+  Allegiance(Myself,ENEMY)
+  !StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+THEN
+  RESPONSE #100
+    SetGlobal("Whined","LOCALS",1)
+    Shout(HELP_ME_GROUP153)
+    DisplayStringHead(Myself,46151) // 'help!'
+END
+
+
+// Attack stuff
+IF
+  Heard([ANYONE],HELP_ME_GROUP153)
+THEN
+  RESPONSE #100
+    RunAwayFrom(NearestEnemyOf(Myself),45)
+END
+
+IF
+  Heard([ANYONE],FLEE_FROM_MAGE)
+THEN
+  RESPONSE #100
+    AttackReevaluate([PC.0.0.MAGE],45)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  !Range(NearestEnemyOf(Myself),7)
+THEN
+  RESPONSE #100
+    EquipRanged()
+    AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+
+IF
+  See(NearestEnemyOf(Myself))
+  Range(NearestEnemyOf(Myself),7)
+THEN
+  RESPONSE #100
+    EquipMostDamagingMelee()
+    AttackReevaluate(NearestEnemyOf(Myself),45)
+END
+

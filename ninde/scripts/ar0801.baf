@@ -1,0 +1,11 @@
+// ---------------------------------------------
+// Spawning Ninde
+// ---------------------------------------------
+IF
+    Global("LK#NindeExists","GLOBAL",0)
+    Global("WorkingForAran","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeExists","GLOBAL",1)
+    CreateCreature("lk#nind",[208.777],1)
+END

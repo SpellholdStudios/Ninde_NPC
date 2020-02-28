@@ -1,0 +1,9 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    CutSceneId("lk#sykre")
+    CreateVisualEffectObject("SPFLESHS",Myself)
+    Wait(1)
+    ChangeAnimation("HGWRA02")
+END

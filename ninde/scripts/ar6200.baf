@@ -1,0 +1,68 @@
+// ---------------------------------------------
+// Ninde Epilogues
+// ---------------------------------------------
+
+// 1. romanced, PC stays
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Ninde")
+	Global("LK#NindeBio","GLOBAL",0)
+	Global("LK#NindeRomanceActive","GLOBAL",2)
+	Global("LK#NindeRestored","GLOBAL",1)
+	!Global("PlayerChoseEssence","GLOBAL",1)
+THEN
+RESPONSE #100
+	SetGlobal("LK#NindeBio","GLOBAL",1)
+	TextScreen("LK#NIFI1")
+	SmallWait(1)
+	Continue()
+END
+
+// 2. romanced, PC ascends
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Ninde")
+	Global("LK#NindeBio","GLOBAL",0)
+	Global("LK#NindeRestored","GLOBAL",1)
+	Global("PlayerChoseEssence","GLOBAL",1)
+THEN
+RESPONSE #100
+	SetGlobal("LK#NindeBio","GLOBAL",1)
+	TextScreen("LK#NIFI2")
+	SmallWait(1)
+	Continue()
+END
+
+// 3. romance failed
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Ninde")
+	Global("LK#NindeBio","GLOBAL",0)
+	!Global("LK#NindeRomanceActive","GLOBAL",2)
+	!Global("PlayerChoseEssence","GLOBAL",1)
+	Global("LK#NindeRestored","GLOBAL",1)
+THEN
+RESPONSE #100
+	SetGlobal("LK#NindeBio","GLOBAL",1)
+	TextScreen("LK#NIFI3")
+	SmallWait(1)
+	Continue()
+END
+
+// 4. unrestored
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Ninde")
+	Global("LK#NindeBio","GLOBAL",0)
+	!Global("LK#NindeRestored","GLOBAL",1)
+THEN
+RESPONSE #100
+	SetGlobal("LK#NindeBio","GLOBAL",1)
+	TextScreen("LK#NIFI4")
+	SmallWait(1)
+	Continue()
+END

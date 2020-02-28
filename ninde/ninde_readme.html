@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <style type="text/css">
+    /*<![CDATA[*/
+    <!-- 
+      body {
+        margin: 0;
+        padding: 0;
+        cursor: default;
+        text-align: center;
+        color: #000;
+        background: #e3e3db url('http://spellholdstudios.net/images/sh_bg_main.jpg');
+      }
+      
+      #wrap {
+        text-align: left;
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 88%;
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+        font-size: 12px;
+        color: #333;
+      }
+      
+      #header {
+        text-align: center;
+        background: #e5e5e5;
+        border: 1px solid #781808;
+        border-top: 5px solid #781808;
+        border-bottom: 5px solid #781808;
+        padding: 5px 0 13px 0;
+      }
+      
+      #header .about {
+        margin: 7px 0 0 0;
+        padding: 0;
+        font-style: italic;
+        color: #555;
+      }
+      
+      #header .menu {
+        font-weight: bold;
+        margin: 0;
+        color: #999;
+      }
+      
+      #header .menu a:link,
+      #header .menu a:visited {
+        color: #333;
+      }
+      
+      #maindiv {
+        margin: 0 auto;
+        margin-top: -20px;
+        width: 80%;
+      }
+      
+      #maindiv .content {
+        counter-increment: kman;
+        counter-reset: h2;
+        background-color: #e8e8e6;
+        padding: 0 0 25px 0;
+        margin: 50px auto;
+        border-width: 1px 1px 4px 10px;
+        border-style: solid;
+        border-color: #781808;
+        position: relative;
+        display: block;
+      }
+      
+      #maindiv .content::before {
+        content: counter(kman, lower-roman);
+        font-size: 100%;
+        font-weight: bold;
+        text-align: center;
+        color: #eee;
+        background-color: #781808;
+        width: 35px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+      }
+      
+      h2 {
+        display: block;
+        font-family: Verdana, Trebuchet MS, Arial, serif;
+        text-align: left;
+        text-indent: 30px;
+        padding: 0px;
+        margin: 20px 0 0 0;
+        border-bottom: dotted 2px #d0d0d0;
+        border-top: dotted 2px #d0d0d0;
+        background: #deded9;
+        font-size: 160%;
+      }
+      
+      h2::first-letter {
+        color: #781808;
+        background-color: transparent;
+      }
+      
+      #maindiv p {
+        font-size: 100%;
+        font-style: normal;
+        line-height: 150%;
+        padding: 0px;
+        margin: 10px auto;
+        width: 90%;
+        display: block;
+      }
+      
+      #maindiv address a:link,
+      #maindiv address a:visited {
+        font-weight: bold;
+        text-decoration: underline;
+        background-color: transparent;
+        color: #eaeaea !important;
+        padding-right: 5px;
+        padding-left: 6px;
+      }
+      
+      #maindiv address a:focus,
+      #maindiv address a:hover {
+        text-decoration: none;
+        color: #F1F1F1;
+        border: 0;
+      }
+      
+      #maindiv address a:active {
+        color: #fff;
+        text-decoration: line-through;
+        border: none;
+      }
+      
+      #maindiv address {
+        font-size: 95%;
+        font-style: normal;
+        font-weight: bold;
+        text-decoration: none;
+        color: #BBB;
+        background-color: #781808;
+        padding: 3px 0px 0px;
+        margin: 0px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        left: 0px;
+        display: block;
+        text-align: right;
+      }
+      
+      #maindiv .important {
+        font-size: 95%;
+        font-family: Verdana;
+        text-align: left;
+        background-color: #F1F1F1;
+        border-top: solid 1px #aaa;
+        border-bottom: solid 1px #aaa;
+        border-left: solid 6px #aaa;
+        border-right: solid 6px #aaa;
+        padding: 10px;
+        margin: 20px auto;
+        width: 80%;
+        line-height: 160%;
+      }
+      
+      #maindiv .important::before {
+        display: none;
+      }
+      
+      #maindiv .important p {
+        font-size: 100%;
+        text-indent: 0px;
+        margin: 5px 0 10px 0;
+      }
+      
+      #maindiv ul {
+        margin: -10px 0 0 30px;
+        *margin-left: 65px;
+      }
+      
+      #maindiv ol {
+        margin: -10px 0 0 35px;
+        *margin-left: 70px;
+      }
+      
+      #maindiv .important ul {
+        margin: -10px 0 0 15px;
+      }
+      
+      #maindiv .important ol {
+        margin: -10px 0 0 20px;
+      }
+      
+      #maindiv ul li {
+        list-style-type: square;
+        line-height: 150%;
+      }
+      
+      #maindiv ol li {
+        line-height: 150%;
+      }
+      
+      .t1 {
+        font-weight: bold;
+        width: 26%;
+        text-align: right;
+        clear: right;
+        float: left;
+        *float: none;
+        *margin-left: 65px;
+        line-height: 22px;
+      }
+      
+      .t2 {
+        text-align: left;
+        width: 73%;
+        float: right;
+        *float: none;
+        line-height: 22px;
+      }
+      
+      hr {
+        margin: 10px 0 10px 0;
+        padding: 0;
+        height: 1px;
+        border: 0;
+        color: #aaa;
+        background-color: #aaa;
+      }
+      
+      hr.floatfix {
+        clear: both;
+        color: #e8e8e6;
+        background-color: #e8e8e6;
+        *margin: 0;
+        *padding: 0;
+      }
+      
+      h1 {
+        font-size: 225%;
+        color: #444;
+        padding: 5px 0 5px 0;
+        margin: 0;
+        width: 100%;
+      }
+      
+      h3,
+      h4,
+      h5 {
+        margin: 10px 40px 10px 40px;
+        padding: 0;
+      }
+      
+      h3 {
+        font-size: 125%;
+        font-style: italic;
+      }
+      
+      h4 {
+        font-size: 125%;
+      }
+      
+      h5 {
+        font-size: 100%;
+      }
+      
+      h6 {
+        width: 100%;
+        margin: 10px 0 15px 0;
+        background-color: #ECECEC;
+        text-align: left;
+        text-indent: 30px;
+        font-size: 100%;
+        font-style: italic;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-bottom: solid 1px #bbb;
+        border-top: solid 1px #bbb;
+      }
+      
+      a:link,
+      a:visited {
+        color: #781808;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:active {
+        color: #222;
+        border-bottom: 1px solid black;
+      }
+
+    -->
+    /*]]>*/
+    </style>
+    <title>SPELLHOLD STUDIOS - Ninde</title>
+  </head>
+  <body>
+    <a name="top" id="top"></a>
+    <div id="wrap">
+
+      <div id="header">
+        <h1>Ninde</h1>
+        <strong>A Spellhold Studios mod for Baldur's Gate 2: SoA</strong>
+        <hr />
+        <p class="about">
+          Author: Deva
+        </p>
+        <p class="about">
+          <a href="http://www.spellholdstudios.net/ie/ninde">Mod Website</a> &#8226;
+          <a href="http://www.shsforums.net/index.php?showforum=417">Mod Forum</a> &#8226;
+          Version: 3.0
+        </p>
+        <hr />
+        <p class="menu">
+          <a href="#intro">Introduction</a> &middot;
+          <a href="#installation">Installation</a> &middot;
+          <a href="#romancen">Romance</a> &middot;
+          <a href="#credits">Credits</a> &middot;
+          <a href="#version">Version History</a>
+        </p>
+      </div>
+      <div id="maindiv">
+
+        <!-- ================== I n t r o d u c t i o n ================== -->
+        <a name="intro" id="intro"></a>
+        <div class="content">
+          <h2>Introduction</h2>
+          <p>Wow. You've downloaded Ninde! Firstly, thank you, and secondly, I hope she doesn't disappoint. If she does, please tell me why. I aim to please. You're in for darkness, deception, deviance, and maybe, if you're lucky some romance along the way. And that's just in the readme. Ninde is something fresh, and (I hope) interesting. She'll add a touch of withering wit, a pinch of attitude and a whole bucketful of naughtiness. So enjoy.</p>
+
+          <p>Ninde was a labour of love. A huge thank you to everyone who has helped along the way, a detailed list of whom can be found in this readme. I think I should give special thanks to K'aeloree, without whom this mod would never ever have got anywhere, and who is the best thing from Australia ever (sorry Danii Minogue), and who deserves all the credit for this. Or most of it.</p>
+          <p>Version 1 includes the romance, NPC banters, PC-initiated flirts, a chat menu and Ninde's interjections. A friendship, voicing and Ninde-initiated flirts are forthcoming in future versions.</p>
+          <p>Visit the <a href="http://www.spellholdstudios.net/ie/ninde">website</a> or <a href="http://www.shsforums.net/index.php?showforum=417">forum</a> for all the latest updates.</p>
+          <address>
+            <span class="footer">Ninde &gt; Introduction</span> &#8226;<a href="#top">BACK TO TOP</a>
+          </address>
+        </div>
+
+        <!-- ================== I n s t a l l a t i o n ================== -->
+        <a name="installation" id="installation"></a>
+        <div class="content">
+          <h2>Installation</h2>
+          <h5>PC</h5>
+          <p>Ninde is a WeiDU mod, packaged in an extractable .RAR archive. Simply unrar <em>"ninde_v3.rar"</em> (<a href="http://www.rarlabs.com">WinRAR</a>) into your Baldur's Gate II directory and run <em>"setup-ninde.exe"</em>.
+          <p>To uninstall, run <em>"setup-ninde.exe"</em> again and select the uninstall option.</p>
+          <h5>Compatibility and Installation Order</h5>
+          <p>The Ninde NPC mod should be compatible with all WeiDU mods, however, we cannot test every single one. It is only compatible with BGII: ToB. If you do encounter an error, please contact K'aeloree (kae@spellholdstudios.net) or alternatively post on the <a href="http://www.shsforums.net/index.php?showforum=574">forums</a>.</p>
+          <p>Although it is not required for Ninde to function properly, it is always a good idea install the latest version of the <a href="http://www.gibberlings3.net/bg2fixpack/">BG2 Fixpack</a>.</p>
+          <address>
+            <span class="footer">Ninde &gt; Installation</span> <a href="#top">BACK TO TOP</a>
+          </address>
+        </div>
+
+        <!-- ================== R O M A N C E ================== -->
+        <a name="romance" id="romance"></a>
+        <div class="content">
+          <h2>Romance</h2>
+          <p>Ninde will romance a male protagonist of any race or alignment with 13+ charisma points. The romance should begin shortly after arriving in Brynnlaw if these conditions are met, and lovetalks will occur in Spellhold and the Underdark. Ninde will be abducted, as per usual, but will NOT be vampirised - you should be able to find her easily enough.</p>
+
+          <p>If you haven't had a lovetalk for a little while, try moving on to another area. There are a few instances where the romance won't progress until you've reached a certain point.</p>
+
+          <p>,<i>A note on the romance</i>: Ninde isn't as prissy as some of your romance options. She won't end the relationship just because you say the wrong thing - in fact, she rather likes a man who'll stand up for himself. The choices that will end the romance are fairly obvious - as long as you let Ninde say her piece, and aren't too horrible to her, you should be alright.</p>
+
+          <p><i>Flirts</i>: Flirting should be available as soon as you get Ninde in your party, if you meet the romance conditions. She won't take kindly to certain behaviors, however. More flirts should appear as the romance progresses.</p>
+          <address>
+            <span class="footer">Ninde &gt; FAQ</span> &#8226;<a href="#top">BACK TO TOP</a>
+          </address>
+        </div>
+
+        <!-- ================== C r e d i t s ================== -->
+        <a name="credits" id="credits"></a>
+        <div class="content">
+
+          <h2>Credits</h2>
+          <p>Huge thanks to K'aeloree, for effectively making this happen. Additional thanks go to wonnimchuna, theacefes, SConrad, Tassadar88, vilkacis, Icendoan and Zyraen for their time and effort and whatnot.</p>
+          <span class="t1">Author (SoA):</span> <span class="t2">Deva</span><br />
+          <span class="t1">Authors (ToB):</span> <span class="t2">K'aeloree, Rhaella</span><br />
+          <span class="t1">Coder:</span> <span class="t2">K'aeloree</span><br />
+          <span class="t1">Music:</span> <span class="t2">theacefes</span><br />
+          <span class="t1">Portrait:</span> <span class="t2">wonnimchunha</span><br />
+          <span class="t1">Additional art:</span> <span class="t2">vilkacis</span><br />
+          <span class="t1">Additional help:</span> <span class="t2">Tassadar88, Icendoan, SConrad, Zyraen, rbx4, TDouglas, Lycein</span><br />
+
+          <hr class="floatfix" />
+          <h5>Programs/tools used in creation:</h5><br />
+          <ul>
+            <li><a href="http://www.weidu.org">WeiDU</a>, by Westley Weimer/Valerio Bigiani (the bigg)</li>
+            <li><a href="http://www.idi.ntnu.no/~joh/ni/">Near Infinity</a>, by Jon Olav Hauglid</li>
+            <li><a href="http://forums.gibberlings3.net/index.php?showforum=137">DLTCEP</a>, by Avenger<li>
+            <li><a href="http://www.rarlab.com/">WinRAR</a>, by Eugene Roshal/Alexander Roshal</li>
+            <li><a href="http://iesdp.gibberlings3.net">IESDP</a>, maintained by igi</li>
+          </ul>
+          <h5>Copyright Notice:</h5>
+          <div class="important">
+            <p>The Ninde was developed by Deva and K'aeloree, based on material from the game Baldur's Gate II and its expansion.</p>
+            <p>All mod content is &copy; Deva and K'aeloree.</p>
+            <p>Baldur's Gate II: Shadows of Amn and Baldur's Gate II: Throne of Bhaal &copy; TSR, Inc. The BioWare Infinity Engine is &copy; BioWare Corp.</p>
+            <p>Please note that any and all redistribution and/or hosting of this mod is expressly unwanted without permission from the author(s).</p>
+          </div>
+          <address>
+            <span class="footer">Ninde &gt; Credits</span> &#8226;<a href="#top">BACK TO TOP</a>
+          </address>
+        </div>
+
+        <!-- ================== V e r s i o n   H i s t o r y ================== -->
+        <a name="version" id="version"></a>
+
+        <div class="content">
+          <h2>Version history</h2>
+          <h6>15 November 2013 - Version 3.0:</h6>
+          <ul>
+            <li>BG2EE compatibility.</li>
+          </ul>
+          <h6>December 2012 - Version 2.0:</h6>
+          <ul>
+            <li>SOA friendship implemented, ToB content released.</li>
+          </ul>
+          <h6>8 January 2009 - Version 1.1:</h6>
+          <ul>
+            <li>Several bug fixes including a romance-stopper.</li>
+          </ul>
+          <h6>2 January 2009 - Version 1.0:</h6>
+          <ul>
+            <li>Initial release</li>
+          </ul>
+          <address>
+            <span class="footer">Ninde &gt; Version History</span> &#8226;<a href="#top">BACK TO TOP</a>
+          </address>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

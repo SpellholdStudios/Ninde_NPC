@@ -1,0 +1,412 @@
+// ---------------------------------------------
+// Initial Go-To
+// ---------------------------------------------
+
+IF
+    NumTimesTalkedTo(0)
+THEN
+  RESPONSE #100
+    Dialogue(Player1)
+END
+
+
+IF
+	OR(2)
+		Global("LK#NindeRomanceActive","GLOBAL",1)
+		Global("LK#NindeRomanceActive","GLOBAL",2)
+	!Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+  	SetGlobal("LK#NindeRomanceActive","GLOBAL",3)
+END
+
+// ---------------------------------------------
+// Romance scripting
+// ---------------------------------------------
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTOBTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    GlobalGT("TalkedSarMel01","GLOBAL",0)
+    OR(5)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",3)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",5)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",7)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",9)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",11)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTOBTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    GlobalGT("TalkedSarMel01","GLOBAL",0)
+    OR(3)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",2)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",8)
+      Global("LK#NindeLoveTalksTOB","GLOBAL",10)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalksTOB","GLOBAL",1)
+END
+
+// morning after, talk 1
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeMorningTOB","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Wraith
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#WraithTalk","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#WraithTalk","GLOBAL",2)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#WraithTalk","GLOBAL",2)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// back to lovetrack
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    Global("LK#WraithTalk","GLOBAL",3)
+    Global("LK#NindeLoveTalksTOB","GLOBAL",4)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("LK#NindeLoveTalksTOBTimer","GLOBAL",2700)
+    SetGlobal("LK#WraithTalk","GLOBAL",4)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("LK#NindeLoveTalksTOBTimer","GLOBAL")
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#WraithTalk","GLOBAL",4)
+    Global("LK#NindeLoveTalksTOB","GLOBAL",4)
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalksTOB","GLOBAL",1)
+END
+
+// saradush
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeLoveTalksTOB","GLOBAL",6)
+    Global("SaradushSacked","GLOBAL",1)
+    PartyRested()
+THEN
+  RESPONSE #100
+    IncrementGlobal("LK#NindeLoveTalksTOB","GLOBAL",1)
+END
+
+// final talk
+
+IF
+	InParty(Myself)
+	See(Player1)
+	CombatCounter(0)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("LK#NindeRomanceActive","GLOBAL",2)
+	Global("ChallengesDone","GLOBAL",1)
+	Global("LK#NindeFinalTalkTOB","GLOBAL",0)
+	!Global("LK#NindeSelfish","GLOBAL",1)
+	!See([ENEMY])
+THEN
+RESPONSE #100
+	RealSetGlobalTimer("LK#NindeFinalTalkTimer","GLOBAL",30)
+	SetGlobal("LK#NindeFinalTalkTOB","GLOBAL",1)
+END
+
+IF
+	InParty(Myself)
+	See(Player1)
+	CombatCounter(0)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("LK#NindeRomanceActive","GLOBAL",2)
+	Global("ChallengesDone","GLOBAL",1)
+	Global("LK#NindeFinalTalkTOB","GLOBAL",1)
+	!Global("LK#NindeSelfish","GLOBAL",1)
+	!See([ENEMY])
+	RealGlobalTimerExpired("LK#NindeFinalTalkTimer","GLOBAL")
+THEN
+RESPONSE #100
+	SetGlobal("LK#NindeFinalTalkTOB","GLOBAL",2)
+END
+
+IF
+	InParty(Myself)
+	See(Player1)
+	CombatCounter(0)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("LK#NindeRomanceActive","GLOBAL",2)
+	Global("ChallengesDone","GLOBAL",1)
+	Global("LK#NindeFinalTalkTOB","GLOBAL",2)
+	!Global("LK#NindeSelfish","GLOBAL",1)
+	!See([ENEMY])
+	RealGlobalTimerExpired("LK#NindeFinalTalkTimer","GLOBAL")
+THEN
+RESPONSE #100
+	PlaySong(0)
+    PlaySound("lk#nind")
+	MoveToObject(Player1)
+	StartDialogueNoSet(Player1)
+END
+
+// ---------------------------------------------
+// Unrestored Talks
+// ---------------------------------------------
+
+// Saradush Prison
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeSaradushVampires","GLOBAL",0)
+    Dead("sarvam01")
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeSaradushVampires","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeSaradushVampires","GLOBAL",1)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Nyalee's grief
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeNyaleeGrief","GLOBAL",0)
+    Global("YagaShuraHeart","GLOBAL",1)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeNyaleeGrief","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeNyaleeGrief","GLOBAL",1)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Challenge 2
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeChallenge2","GLOBAL",0)
+    GlobalGT("BeginChallenge2","GLOBAL",2)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeChallenge2","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeChallenge2","GLOBAL",1)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Amkethran
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeAmkethran","GLOBAL",0)
+	GlobalGT("METBAL","GLOBAL",0)
+	!Global("LK#NindeRestored","GLOBAL",1)
+	AreaCheck("AR5500")
+THEN
+  RESPONSE #100
+ 	RealSetGlobalTimer("LK#NindeAmkethranTimer","GLOBAL",900)
+    SetGlobal("LK#NindeAmkethran","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeAmkethran","GLOBAL",1)
+	RealGlobalTimerExpired("LK#NindeAmkethranTimer","GLOBAL")
+	!Global("LK#NindeRestored","GLOBAL",1)
+	AreaCheck("AR5500")
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeAmkethran","GLOBAL",2)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+	Global("LK#NindeAmkethran","GLOBAL",2)
+	RealGlobalTimerExpired("LK#NindeAmkethranTimer","GLOBAL")
+	!Global("LK#NindeRestored","GLOBAL",1)
+	AreaCheck("AR5500")
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
+
+// Malla's soul
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+    Global("LK#NindeSoulgem","GLOBAL",0)
+	PartyHasItem("amsoul01")
+	!Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    SetGlobal("LK#NindeSoulgem","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    CombatCounter(0)
+    !See([ENEMY])
+	PartyHasItem("amsoul01")
+    Global("LK#NindeSoulgem","GLOBAL",1)
+    !Global("LK#NindeRestored","GLOBAL",1)
+THEN
+  RESPONSE #100
+    PlaySong(0)
+    PlaySound("lk#nind") 
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END

@@ -1,0 +1,12 @@
+//Spawning Sykre
+IF
+	True()
+THEN
+RESPONSE #100
+	CutSceneId(Player1)
+	CreateVisualEffect("SPFLESHS",[1454.1398])
+	Wait(1)
+	CreateCreature("lk#sykre",[1454.1398],14)
+	Wait(1)
+	ActionOverride("lk#sykre",StartDialogueNoSet(Player1))
+END

@@ -1,0 +1,25 @@
+IF
+    True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    FadeToColor([20.0],0)
+    Wait(1)
+    ActionOverride("LK#NIMES",DestroySelf())
+    LeaveAreaLUAPanic("ARLKN1","",[650.395],8)
+    LeaveAreaLUA("ARLKN1","",[650.395],8)
+    ActionOverride(Player2,LeaveAreaLUA("ARLKN1","",[584.435],8))
+    ActionOverride(Player3,LeaveAreaLUA("ARLKN1","",[728.426],8))
+    ActionOverride(Player4,LeaveAreaLUA("ARLKN1","",[599.510],8))
+    ActionOverride(Player5,LeaveAreaLUA("ARLKN1","",[732.499],8))
+    ActionOverride(Player6,LeaveAreaLUA("ARLKN1","",[667.544],8))
+    Explore()
+    MultiPlayerSync()
+    CreateCreature("LK#NIPRU",[467.500],1)
+    CreateCreature("LK#NIWIN",[848.411],1)
+    CreateCreature("LK#NIAON",[793.337],1)
+    CreateCreature("LK#NIDIL",[594.614],1)
+    CreateCreature("LK#NIJAM",[521.337],1)
+    CreateCreature("LK#NIARC",[650.310],1)
+    StartCutScene("lk#nict1")
+END
