@@ -120,11 +120,26 @@ ACTION_IF is_tob BEGIN
 END
 
 
-/* -------------- *
- *  Copying .bam  *
- * -------------- */
-// Copying images and creatures
-COPY ~ninde/images~ ~override~
+/* --------------------------------- *
+ *  Copy BAMs or convert them to EE  *
+ * --------------------------------- */
+ACTION_IF is_ee BEGIN
+	INCLUDE ~%MOD_FOLDER%/lib/gw_convert_inventory_bam_to_ee.tpa~	// Loads function converting inventory BAMs to EE.
+	OUTER_SPRINT file-exc ~lk#nankd ~ // Special case: description icons don't need to be converted.
+	ACTION_BASH_FOR ~%MOD_FOLDER%/bam/~ ~^.+\.bam$~ BEGIN
+		ACTION_TO_LOWER %BASH_FOR_FILE%
+		ACTION_TO_LOWER %BASH_FOR_RES%
+		ACTION_IF (~%file-exc%~ STRING_CONTAINS_REGEXP ~%BASH_FOR_RES%~ = 1) BEGIN
+			COPY ~%BASH_FOR_FILESPEC%~ ~override/%BASH_FOR_FILE%~
+				LPF ~gw_convert_inventory_bam_to_ee~ END
+			BUT_ONLY
+		END ELSE BEGIN
+			COPY ~%BASH_FOR_FILESPEC%~ ~override/%BASH_FOR_FILE%~
+		END
+	END
+END ELSE BEGIN
+	COPY ~%MOD_FOLDER%/bam~	~override~
+END
 
 
 /* ---------------------- *
@@ -211,6 +226,7 @@ COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#niaon.cre~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv6~
 	ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+BUT_ONLY
   
 // Lady Dilatuvel
 COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nidil.cre~
@@ -235,6 +251,7 @@ COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nidil.cre~
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+BUT_ONLY
 
  // Jamema
  COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nijam.cre~
@@ -264,6 +281,7 @@ COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nidil.cre~
 	ADD_MEMORIZED_SPELL ~sppr113~ #5 ~priest~ (1)
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+BUT_ONLY
 
 // Sir Prufrock
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#nipru.cre~
@@ -285,6 +303,7 @@ COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#nipru.cre~
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+BUT_ONLY
 
 // Sir Windhover
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niwin.cre~
@@ -299,6 +318,7 @@ COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niwin.cre~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv6~
 	ADD_CRE_ITEM ~potn14~ #1 #0 #0 ~IDENTIFIED~ ~inv8~
+BUT_ONLY
 
 // Lord Archonson
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niarc.cre~
@@ -317,6 +337,7 @@ COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niarc.cre~
 	ADD_MEMORIZED_SPELL ~sppr113~ #5 ~priest~ (3)
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
 	ADD_CRE_ITEM ~potn11~ #1 #0 #0 ~IDENTIFIED~ ~inv7~
+BUT_ONLY
 
 // Messenger
 COPY_EXISTING ~messen.cre~ ~override/lk#nimes.cre~
@@ -352,24 +373,9 @@ BUT_ONLY
 COPY ~ninde/items/lk#nankh.itm~ ~override/lk#nankh.itm~
 	SAY NAME1 @58 /* Ankh of Ascension */
 	SAY NAME2 @58
-	SAY UNIDENTIFIED_DESC @59 /* The Ankh of Ascension
-
-The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde’s neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
-
-This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
-
-ABILITIES:
-
-Wearer immune to poison, disease and level-drain. */
-	SAY DESC @60 /* The Ankh of Ascension
-
-The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde's neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
-
-This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
-
-ABILITIES:
-
-Wearer immune to poison, disease and level-drain. */
+	SAY UNIDENTIFIED_DESC @59
+	SAY DESC @59
+BUT_ONLY
 
 
 /* ----------------------------------------- *
