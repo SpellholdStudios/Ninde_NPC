@@ -39,8 +39,8 @@ END
 APPEND ~state.ids~ ~0x00000FC0 STATE_REALLY_DEAD~ UNLESS ~0x00000FC0 STATE_REALLY_DEAD~
 
 // Shoutids.ids + gtimes.ids
-INCLUDE ~ninde/macros/ids_entries_shoutids.tph~
-INCLUDE ~ninde/macros/ids_entries_gtimes.tph~
+INCLUDE ~ninde/lib/ids_entries_shoutids.tph~
+INCLUDE ~ninde/lib/ids_entries_gtimes.tph~
 
 // Compiling dialogue...
 COMPILE ~ninde/dialogue/lk#nind.d~
