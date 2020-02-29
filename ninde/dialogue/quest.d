@@ -111,18 +111,18 @@ CHAIN IF ~Global("LK#NindeEncounter_givingover","ARLKN1",4)~ THEN AERIEJ LK#NE_a
   @55 /* D-don't worry, <CHARNAME>.  I'm sure she just wanted to scare you.  They're probably already in Waterdeep now. */
   == KELDORJ IF ~InParty("Keldorn") !StateCheck("Keldorn",CD_STATE_NOTVALID)~ THEN @56 /* You know not to underestimate Ninde's resourcefulness, <CHARNAME>, and I need not warn you to be vigilant.  She may not escape from Archonson, he did seem capable.  But a part of me wonders if all the paladins in Waterdeep would be able to handle her. */
   == MAZZYJ IF ~InParty("Mazzy") !StateCheck("Mazzy",CD_STATE_NOTVALID)~ THEN @57 /* You did the right thing, <CHARNAME>.  As much as I find the idea of her public execution distasteful, her actions, those murders...they demand retribution. */
-  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgann",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
+  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
 EXIT
 
 CHAIN IF ~Global("LK#NindeEncounter_givingover","ARLKN1",4)~ THEN KELDORJ LK#NE_keldorn
   @56 /* You know not to underestimate Ninde's resourcefulness, <CHARNAME>, and I need not warn you to be vigilant.  She may not escape from Archonson, he did seem capable.  But a part of me wonders if all the paladins in Waterdeep would be able to handle her. */
   == MAZZYJ IF ~InParty("Mazzy") !StateCheck("Mazzy",CD_STATE_NOTVALID)~ THEN @57 /* You did the right thing, <CHARNAME>.  As much as I find the idea of her public execution distasteful, her actions, those murders...they demand retribution. */
-  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgann",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
+  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
 EXIT
 
 CHAIN IF ~Global("LK#NindeEncounter_givingover","ARLKN1",4)~ THEN MAZZYJ LK#NE_mazzy
   @57 /* You did the right thing, <CHARNAME>.  As much as I find the idea of her public execution distasteful, her actions, those murders...they demand retribution. */
-  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgann",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
+  == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN @58 /* If this be the speed with which you turn yer comrades in when the Pallies come a'knocking, I best be watchin' me back. */
 EXIT
 
 CHAIN IF ~Global("LK#NindeEncounter_givingover","ARLKN1",4)~ THEN KORGANJ LK#NE_korgan

@@ -521,7 +521,7 @@ THEN
     Dialogue(Player1)
 END
 
-// Sahaugan prince dead
+// Sahuagin prince dead
 IF
     InParty(Myself)
     !StateCheck(Myself,CD_STATE_NOTVALID)

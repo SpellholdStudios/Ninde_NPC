@@ -1,5 +1,11 @@
 @0    = ~Ninde NPC Mod for BGII~
 @1    = ~ToB is not installed! Please install the Throne of Bhaal expansion before installing Ninde.~
+@1    = ~You must have Throne of Bhaal or BG2:EE installed to install Adrian NPC mod.~
+
+
+/* ----------- *
+ *  Ninde NPC  *
+ * ----------- */
 @2    = ~Ninde~
 @3    = ~Ninde Amblecrown~
 @4    = ~"The past is precisely that -- the past." Ninde says, with a pointed yawn. Despite her initial reluctance, you soon manage to glean a little more information about the sun elf's past. Namely that although she was born in the Elven forest of Cormanthor, she was raised in Waterdeep, by a wealthy family of human traders, who spared no expense on her magical education. But although she developed a taste for the finer things in life, she was distinctly less delighted by the prospect of having to work for them To her adoptive families chagrin, she fell in with the city's seedier element, and began to delve into the shadier side of arcane lore. Soon she went from Waterdhavian high society's most desirable young ingenue to a regular among the ghosts and rats of its criminal underbelly. And indeed, whatever secrets she unearthed there have left their mark on the elf. Her eyes tell you more of the tragedy, darkness, and romance of her past then the secretive Ninde herself ever would.~
@@ -45,8 +51,11 @@
 @44   = ~Your legs will be mine!~ [lk#ni40]
 @45   = ~Ah, the joys of black silk.~ [lk#ni41]
 @46   = ~Why have you got me doing this? I'm a mage, not a mendicant.~ [lk#ni42]
-@47   = ~Aondrial~
 
+/* ----------- *
+ *  Creatures  *
+ * ----------- */
+@47   = ~Aondrial~
 @49   = ~Lady Dilatuvel~
 @50   = ~Jamema~
 @51   = ~Sir Prufrock~
@@ -56,26 +65,41 @@
 @55   = ~Shadow Thief~
 @56   = ~Sykre~
 @57   = ~Sykre D'Alysoss~
+
+/* ------- *
+ *  Items  *
+ * ------- */
 @58   = ~Ankh of Ascension~
 @59   = ~The Ankh of Ascension
 
-The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde’s neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
+The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde’s neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal.
 
 This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
 
-ABILITIES:
+STATISTICS:
 
-Wearer immune to poison, disease and level-drain.~
-@60   = ~The Ankh of Ascension
+Equipped abilities:
+- Immunity to poison, disease and level drain.
 
-The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde's neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal. 
+Weight: 1~
+/*@60   = ~The Ankh of Ascension
+
+The Ankh is a potent Mulhorandi symbol of both divine force and undeath, and enchanted amulets such as this are often given to high-ranking clergy in that sun-baked eastern land. The heavy gold symbol, inlaid with strange glyphs, hangs about Ninde's neck. Whether due to sentimental attachment or something more, you have never seen her remove it, and she probably wouldn't if you asked her. When asked where she acquired this exotic artifact, she answers it was a gift from her late master, Lassal.
 
 This particular Ankh is enchanted to grant the wearer immunity to disease, poison and level drain, and thus would prove a boon to any aspiring adventurer.
 
-ABILITIES:
+STATISTICS:
 
-Wearer immune to poison, disease and level-drain.~
-@61   = ~After their victory at the Throne of Bhaal, Ninde and <CHARNAME> were finally able to discuss their relationship... and its future.  Like so much of what had passed between them, this talk was passionate, troubling, and ultimately inconclusive.  Ninde left him with the vague promise that one day, once she again felt at ease with her own identity, she would return.  Whether that day ever came is unknown, though rumour claims that they met again several years later in Calimport, where Ninde had become deeply embroiled in the local underworld.  Her own life again under control and her fortune no longer tied to that of a more powerful man, Ninde was finally willing to risk once more the relationship that she had hitherto so abruptly concluded.  Legend says that the couple remained in Calimshan thereafter, their relationship as tempestuous as it was close, and if the poets are overly optimistic about their prospects, it is no wonder.  As troubled as the long history of <CHARNAME> and Ninde had been, what lay between them was rich and enduring, and stronger than either had ever anticipated.~
-@62   = ~Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after the ascension of her former lover, <CHARNAME>.  Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar.  Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short.  Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited.  She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept.~
-@63   = ~Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after leaving the side of her former lover, <CHARNAME>.  Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar.  Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short.  Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited.  She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept.~
-@64   = ~Ninde left <CHARNAME>'s side not long after their victory at the Throne of Bhaal, adopting a wandering lifestyle for a time.  She was sighted in cities throughout luxurious Calimshan, where she was quick to put her talents to use as one of that nation's most beguiling courtesans.  Those who came to know her said that life had becoming increasingly hollow to the infamous Lady Amblecrown, and before long she disappeared entirely from society.  Accounts vary on what passed in the intervening time, but when Ninde returned, she was a changed woman.  Rarely if ever was she seen during the daylight, and it was whispered that she had finally followed in the footsteps of her erstwhile mistress Bodhi, hoping to stave off madness and death forever.  She ultimately accomplished neither of these things, as her madness was too long engrained to be cast aside so easily, and death... death came all too quickly at the hands of a more powerful rival.~
+Equipped abilities:
+- Immunity to poison, disease and level drain.
+
+Weight: 1~
+*/
+
+/* ----------- *
+ *  Epilogues  *
+ * ----------- */
+@61   = ~After their victory at the Throne of Bhaal, Ninde and <CHARNAME> were finally able to discuss their relationship... and its future. Like so much of what had passed between them, this talk was passionate, troubling, and ultimately inconclusive. Ninde left him with the vague promise that one day, once she again felt at ease with her own identity, she would return. Whether that day ever came is unknown, though rumour claims that they met again several years later in Calimport, where Ninde had become deeply embroiled in the local underworld. Her own life again under control and her fortune no longer tied to that of a more powerful man, Ninde was finally willing to risk once more the relationship that she had hitherto so abruptly concluded. Legend says that the couple remained in Calimshan thereafter, their relationship as tempestuous as it was close, and if the poets are overly optimistic about their prospects, it is no wonder. As troubled as the long history of <CHARNAME> and Ninde had been, what lay between them was rich and enduring, and stronger than either had ever anticipated.~
+@62   = ~Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after the ascension of her former lover, <CHARNAME>. Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar. Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short. Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited. She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept.~
+@63   = ~Unsurprisingly, the notorious Lady Amblecrown did not simply disappear from the history books after leaving the side of her former lover, <CHARNAME>. Multiple accounts place her in Calimshan, where she was briefly implicated in the activities of a local cult of Shar. Perhaps her conscience had finally caught up with her at last, or perhaps she was simply unwilling to follow too closely in the footsteps of her former self, but her association was--to say the least--short. Ninde did, however, remain active in the Calishite underworld; the luxurious lifestyle to which she was accustomed did not come without a hefty pricetag, and as a woman, her prospects in Calimshan were otherwise limited. She had sworn to never again be merely the plaything of a powerful man, and despite her many chances to renege, this was a promise she ultimately kept.~
+@64   = ~Ninde left <CHARNAME>'s side not long after their victory at the Throne of Bhaal, adopting a wandering lifestyle for a time. She was sighted in cities throughout luxurious Calimshan, where she was quick to put her talents to use as one of that nation's most beguiling courtesans. Those who came to know her said that life had becoming increasingly hollow to the infamous Lady Amblecrown, and before long she disappeared entirely from society. Accounts vary on what passed in the intervening time, but when Ninde returned, she was a changed woman. Rarely if ever was she seen during the daylight, and it was whispered that she had finally followed in the footsteps of her erstwhile mistress Bodhi, hoping to stave off madness and death forever. She ultimately accomplished neither of these things, as her madness was too long engrained to be cast aside so easily, and death... death came all too quickly at the hands of a more powerful rival.~
