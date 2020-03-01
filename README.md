@@ -23,7 +23,7 @@
 &nbsp;
 
 <div align="center">
-<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#details">Details</a> &#8226; <a href="#romance">Romance</a> &#8226; <a href="#components">Components</a> &#8226; <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
+<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#details">Details</a> &#8226; <a href="#romance">Romance</a> &#8226; <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
 </div>
 
 <hr>
@@ -31,7 +31,7 @@
 
 ## <a name="intro" id="intro"></a>Overview
 
-<img style="float: left;" src="ninde/readme/images/rhadrl.png">
+<img style="float: left;" src="ninde/readme/images/lknindl.png">
 Lady Ninde Amblecrown, once Waterdeep's most alluring young ingenue, now a hunted woman with a tongue like a guillotine, formidable magical skill and a matching ego. Will you befriend her? Grow to love her? Will you even be able to bring yourself to tolerate her?
 
 She is a Neutral Evil elven necromancer and can be found in Bodhi's lair only if the PC sides with Aran Linvail. She's rated PG13, on account of some steaminess here and there. The romance boasts some more mature content.
@@ -62,6 +62,11 @@ Ninde also aims to expand upon the background of a certain character who remains
 
 ## <a name="compat" id="compat"></a>Compatibility
 
+This mod is designed to work on the following Infinity Engine games: the original Baldur's Gate II (BG2 or just SoA) with the Throne of Bhaal (ToB) expansion, Baldur's Gate II: Enhanced Edition (BG2:EE), the conversion projects <a href="http://www.shsforums.net/forum/261-bgt-weidu/">Baldur's Gate Trilogy (BGT)</a> and <a href="https://github.com/K4thos/EET/releases">Enhanced Edition Trilogy (EET)</a>.
+
+Ninde NPC is a WeiDU mod, and therefore should be compatible with all WeiDU mods. However, we cannot test every single one. If you encounter any bugs, please <a href="http://www.shsforums.net/forum/417-ninde/">report them on the forum</a>!
+
+>Although it is not required for Ninde NPC to function properly, classical game players are strongly recommended to download and install the latest version of the <a href="http://www.gibberlings3.net/bg2fixpack/">BG2 Fixpack</a> before proceeding with the installation of this mod.<br>
 <div align="right"><a href="#top">Back to top</a></div>
 
 
@@ -108,7 +113,7 @@ Run **`setup-ninde.command`** in your game folder to reinstall, un-install or ot
 
 #### Linux
 
-Ninde NPC for BGII for Linux is distributed as a compressed tarball and does not include a WeiDU installer.
+Ninde NPC for BGII for Linux is distributed in the same compressed archive and does not include a WeiDU installer.
 
 Extract the contents of the mod to the folder of the game you wish to modify.
 
@@ -131,19 +136,14 @@ In addition to the methods above for removing individual components, you can com
 
 #### Statistics
 
-- Strength 9 (Fairly average; Ninde has never experienced hard labour or wielded anything heavier then a staff.)
-- Dexterity 15 (Natural elfin grace plus a childhood filled with dance classes.)
-- Constitution 10 (Again, average. She takes care of herself, but isn't precisely stout.)
-- Intelligence 16 (Expensive, expansive formal education and a generally quick mind.)
-- Wisdom 16 (She's seen the world, and lived in it. Perhaps a little too much.)
-- Charisma 15 (Vivacious and assertive with an elegant turn of phrase.)
+- Strength 9 (*Fairly average; Ninde has never experienced hard labour or wielded anything heavier then a staff.*)
+- Dexterity 15 (*Natural elfin grace plus a childhood filled with dance classes.*)
+- Constitution 10 (*Again, average. She takes care of herself, but isn't precisely stout.*)
+- Intelligence 16 (*Expensive, expansive formal education and a generally quick mind.*)
+- Wisdom 16 (*She's seen the world, and lived in it. Perhaps a little too much.*)
+- Charisma 15 (*Vivacious and assertive with an elegant turn of phrase.*)
 
 ## 
-Name: Ninde
-Gender: Female
-Race: Elf
-Class: Necromancer
-Alignment: Neutral Evil
 
 #### Biography
 
@@ -181,18 +181,9 @@ Alignment: Neutral Evil
 <hr>
 
 
-## <a name="components" id="components"></a>Components
-
-
-<div align="right"><a href="#top">Back to top</a></div>
-
-
-<hr>
-
-
 ## <a name="credits" id="credits"></a>Credits and Acknowledgements
 
-**Author:** <a href="http://www.shsforums.net/user/3253-deva/"> </a>Deva (SoA), vK'aeloree</&> and <a href="http://www.shsforums.net/user/7955-rhaella/">Rhaella</a> (ToB)  
+**Authors:** <a href="http://www.shsforums.net/user/3253-deva/">Deva (SoA)</a> - <a href="http://www.shsforums.net/user/3481-kaeloree/">K'aeloree</a> and <a href="http://www.shsforums.net/user/7955-rhaella/">Rhaella</a> (ToB)  
 **WeiDU coding:** <a href="http://www.shsforums.net/user/3481-kaeloree/">K'aeloree</a>  
 
 ## 
@@ -200,8 +191,8 @@ Alignment: Neutral Evil
 #### Special Acknowledgements to:
 
 - Huge thanks to K'aeloree, for effectively making this happen. Additional thanks go to wonnimchuna, theacefes, SConrad, Tassadar88, vilkacis, Icendoan and Zyraen for their time and effort and whatnot.
-- Music: theacefes.
 - <a href="http://www.spellholdstudios.net/">Spellhold Studios</a> team for hosting the mod (<a href="http://www.shsforums.net">Forums</a>).
+- Music: theacefes.
 - Portrait: wonnimchunha.
 - Additional art: vilkacis.
 - Additional help: Tassadar88, Icendoan, SConrad, Zyraen, rbx4, TDouglas, Lycein.
@@ -228,7 +219,7 @@ Alignment: Neutral Evil
 ###### All mod content is &copy;Deva and K'aeloree.
 ###### Baldur's Gate II: Shadows of Amn and Baldur's Gate II: Throne of Bhaal &copy; TSR, Inc. The BioWare Infinity Engine is &copy; BioWare Corp. All other trademarks and copyrights are property of their respective owners.
 
-###### This mod was created to be freely enjoyed by all Baldur's Gate II players, and its content is free of rights. Please note that any and all redistribution and/or hosting of this mod is prohibited without permission from the author.
+###### This mod was created to be freely enjoyed by all Baldur's Gate II players, and its content is free of rights. Please note that any and all redistribution and/or hosting of this mod is prohibited without permission from the authors.
 
 ###### The modding community for the Infinity Engine has been going strong for more than 10 years now, and is the culmination of thousands of unpaid modding hours by fellow fans of the game. Modders produce their best work and players get the best, well-supported mods when we all work together.
 ###### There are two big ways to upset this harmony. One is to claim someone else's work as your own. The second is to host and redistribute a mod without permission from the author(s).
@@ -244,39 +235,52 @@ Alignment: Neutral Evil
 #### Version 3.0 ( March 2020)
 
 - Added *ninde.ini* metadata file to support AL|EN's "Project Infinity".
-TODO - Added `DESIGNATED` number and "*ninde_npc_for_bg2*" component `LABEL`.
 
-- HANDLE_AUDIO function: Added music variable for EE games and moved .ogg file into music sub-folder.
+TODO - Added component `DESIGNATED` number and "*ninde_npc_for_bg2*" `LABEL`.
 
-
-- Fixed Ninde portraits in EE games.
-- Replaced `GAME_IS` conditions with variables checks to speed up install time.
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
+- Commented code as much as possible.
+- Replaced `GAME_IS` conditions with variables checks to speed up install time.
+- Added missing HANDLE_CHARSETS function to convert string entries for EE games.
+- HANDLE_AUDIO function: Added music variable for EE games and moved .ogg file into new music sub-folder.
+
+- Fixed typos in .d and .baf files:
+  - questd.d: Replaced !StateCheck("Korgann",CD_STATE_NOTVALID) with !StateCheck("Korgan",CD_STATE_NOTVALID).
+  - lk#ni25d.baf and lk#nind.baf: Replaced !StateCheck("Myself",CD_STATE_NOTVALID) with !StateCheck(Myself,CD_STATE_NOTVALID).
+  - lk#nindj.d: Replaced InParty("Imoen") with InParty("Imoen2").
+- Fixed Ninde portraits in EE games.
+- Converted inventory BAMs to EE: This feature attempts to modify traditional inventory BAMs so that both the large and small icons are utilized by the EE games. The inventory BAM must have two sequences, the first containing the "large" inventory icon frame and the second containing the "small" inventory icon frame to be processed. Inventory icon BAMs in the bam folder that meet these requirements are patched and saved back to the override folder.
+- <ins>Ankh of Ascension (lk#nankh.itm)</ins>:
+	- Fixed item description: added missing weight (1).
+	- Added missing opcodes for a full Immunity to Poison: op#173 (Poison Resistance Modifier = 100), op#169 (Immunity Special Effect Icon = 6 Poisoned) and op#267 (Protection from Display Specific String: 14017 *Poison* - 14662 *Poisoned*).
+	- Added missing opcodes for a full Immunity to Disease: op#169 (Immunity Special Effect Icon = 7 Diseased), op#267 (Protection from Display Specific String: 39752 *Stricken by a foul disease* - 54337 *Diseased*).
+	- Added missing opcodes or a full Immunity to Level Drain: op#267 (Protection from Display Specific String: 41495 *One Level Drained* - 40968 *Two Levels Drained* - 40969 *Three Levels Drained* - 40979 *Four Levels Drained* - 41616 *Five Levels Drained*) and op#169 (Immunity Special Effect Icon = 59 Energy Drain).
+	- Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
+	- EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
+
 TODO - Replaced `AUTHOR` keyword with `SUPPORT`.
 
+- Fixed a typo in lk#nindj.tra causing CTD (replaced *naïve* with *naive*) and a few others in tra files.
+
 - Updated deprecated modding tools links.
+
 TODO - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
-- Removed useless files and backup folder.
+
+- Removed useless files and folders (backup and bgee).
+	- Reorganized mod architecture tree: created folders to sort files according to their types.
+
 TODO - Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
-TODO - Updated WeiDU installer to v246.
-- Uploaded mod to official SpellHold Studios GitHub mirror account.
 
-TODO !StateCheck("Korgann",CD_STATE_NOTVALID)
+- Updated WeiDU installer to v246.
+- Uploaded mod to official Spellhold Studios GitHub mirror account.
 
-:: ninde - Ninde NPC v2
-
-:: Lollorian's TDD Compatibility patch (affects TDD as well)
-:: http://www.shsforums.net/topic/55469-ellesime-dialogue-problem-saerileth-ninde-kivan-and-re-mods/?p=578879
-
-TODO !StateCheck(Myself,CD_STATE_NOTVALID)
-lk#ni25d.baf
-lk#nind.baf
+TODO oggdec sox
 
 ## 
 
-#### Version 2.2 (13 November 2013)
+#### Version 2.2 (15 November 2013)
 
-- BG2EE compatibility.
+- BG2:EE compatibility.
 
 ## 
 
