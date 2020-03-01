@@ -3,9 +3,10 @@
 // --------------------------------------------
 // Basics
 BACKUP ~ninde/backup~
-AUTHOR ~K'aeloree (kae@spellholdstudios.net)~ 
+AUTHOR ~Deva and K'aeloree (kae@spellholdstudios.net)~ 
 VERSION ~v2~
-README ~ninde/ninde_readme.html~
+
+README ~ninde/readme/ninde-readme-english.html~
 
 ALWAYS
 
@@ -21,23 +22,45 @@ ALWAYS
 		OUTER_SPRINT var_ee ""
 	END
 
+	// Determines if item_use.2da file is installed by ToBEx.
+	OUTER_SET is_tobex=0
+	ACTION_IF FILE_EXISTS ~tobex_ini/tobexcore.ini~ BEGIN
+		ACTION_IF FILE_CONTAINS_EVALUATED (~tobex_ini/tobexcore.ini~ ~Externalise Item-Creature Exclusions=1~) BEGIN
+			OUTER_SET is_tobex=1
+		END
+	END
+	OUTER_SET is_item_use = (is_ee OR is_tobex) ? 1 : 0
+
+	// Borrowed from Edwin Romance: convert strings to UTF-8 for BGEE/BG2EE
+	// No exception, everything needs to be converted
+	// setup.tra contains in game texts as well as installation texts and need to be converted
+	ACTION_DEFINE_ARRAY lk#noconvert BEGIN END
+	// any tra files used in LANGUAGE need to be reloaded after UTF-8 conversion
+	ACTION_DEFINE_ARRAY lk#reload BEGIN setup END
+
+	LAF HANDLE_CHARSETS
+		INT_VAR
+			infer_charsets = 1
+		STR_VAR
+			tra_path = EVAL ~%MOD_FOLDER%/translations~
+			noconvert_array = lk#noconvert
+			reload_array = lk#reload
+	END
+
 END
 
 
-// --------------------------------------------
-// Ninde NPC Mod v.03
-// --------------------------------------------
-// Component setup
 AUTO_TRA ~ninde/translations/%s~
+
 LANGUAGE ~English~
-         ~English~
+         ~english~
          ~ninde/translations/english/setup.tra~
 
 /* ======================== *
  *  Ninde NPC Mod for BGII  *
  * ======================== */
-BEGIN @0 /* Ninde NPC Mod for BGII */
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mel01.cre~ @1 /* ToB is not installed! Please install the Throne of Bhaal expansion before installing Ninde. */
+BEGIN @0											/* Ninde NPC Mod for BGII */
+REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @1			// ~You must have Throne of Bhaal or BG2:EE installed to install Ninde NPC mod.~
 
 INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 

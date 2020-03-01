@@ -377,6 +377,21 @@ COPY ~ninde/items/lk#nankh.itm~ ~override/lk#nankh.itm~
 	SAY DESC @59
 BUT_ONLY
 
+// EE and ToBEx: Add Ninde's Ankh of Ascension to item_use.2da
+// -----------------------------------------------------------
+ACTION_IF is_item_use BEGIN
+	OUTER_SET strref_ninde = RESOLVE_STR_REF (@2)	// ~Ninde~
+	OUTER_SET strref_exclu = RESOLVE_STR_REF (@60)	// ~As you try to reach for her necklace, Ninde knocks your hand aside. "Keep your paws off this amulet! It is mine!"~ [GAM_47]
+	ACTION_IF is_ee BEGIN
+		APPEND ~item_use.2da~ ~lk#nankh Ninde %strref_exclu% 0 %strref_ninde% ~ UNLESS ~lk#nankh~
+	END ELSE BEGIN
+	ACTION_IF is_tobex BEGIN
+		APPEND ~item_use.2da~ ~lk#nankh Ninde %strref_exclu% 	3 	%strref_exclu% 	%strref_exclu% 	%strref_exclu% 	%strref_exclu% 	%strref_exclu% 	%strref_exclu%~
+	END
+	COPY_EXISTING ~item_use.2da~ ~override~
+		PRETTY_PRINT_2DA
+END
+
 
 /* ----------------------------------------- *
  *  Installing Spells (thanks to Icendoan!)  *
