@@ -24,6 +24,20 @@ ALWAYS
 		OUTER_SPRINT var_ee ""
 	END
 
+
+	/* eet compatibility */
+	ACTION_IF (is_eet) BEGIN
+		OUTER_SET bg2_chapter = 12
+	END ELSE BEGIN
+		OUTER_SET bg2_chapter = 0
+	END
+	OUTER_FOR (i = 1 ; i <= 10 ; ++i) BEGIN
+		OUTER_SET bg2_chapter = bg2_chapter + 1
+		OUTER_SPRINT name_source ~bg2_chapter_%i%~
+		OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+	END
+
+
 	// Determines if item_use.2da file is installed by ToBEx.
 	OUTER_SET is_tobex=0
 	ACTION_IF FILE_EXISTS ~tobex_ini/tobexcore.ini~ BEGIN

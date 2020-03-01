@@ -54,18 +54,18 @@ INCLUDE ~ninde/lib/ids_entries_gtimes.tph~
 
 // Compiling dialogues...
 COMPILE ~ninde/dialogue/lk#nind.d~
-COMPILE ~ninde/dialogue/lk#nindj.d~
+COMPILE EVALUATE_BUFFER ~ninde/dialogue/lk#nindj.d~
 COMPILE ~ninde/dialogue/blk#nind.d~
 COMPILE ~ninde/dialogue/lk#nindp.d~
 COMPILE ~ninde/dialogue/quest.d~
 
 COMPILE ~ninde/dialogue/lk#ni25.d~
-COMPILE ~ninde/dialogue/lk#ni25j.d~
+COMPILE EVALUATE_BUFFER ~ninde/dialogue/lk#ni25j.d~
 COMPILE ~ninde/dialogue/blk#ni25.d~
-COMPILE ~ninde/dialogue/lk#ni25p.d~
+COMPILE EVALUATE_BUFFER ~ninde/dialogue/lk#ni25p.d~
 
 // Compiling scripts...
-COMPILE ~ninde/scripts/lk#nins.baf~
+COMPILE EVALUATE_BUFFER ~ninde/scripts/lk#nins.baf~
 COMPILE ~ninde/scripts/lk#nind.baf~
 COMPILE ~ninde/scripts/lk#nicut.baf~
 COMPILE ~ninde/scripts/lk#nict1.baf~

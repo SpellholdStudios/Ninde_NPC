@@ -7,8 +7,8 @@ BEGIN LK#NI25P
 IF ~Global("LK#NindeJoined","LOCALS",1)~ LK#NP_intro
   SAY @0 /* My father, bless his senile heart, used to say that even the sweetest apples rot.  Perhaps...yes, I could certainly do with a break from the road.  My feet must be restored to their former, delicate selves.  Speak plain, <CHARNAME>, do you desire my company any longer? */
   ++ @1 /* Well your little break from adventuring will have to wait for a while, Ninde.  We still have need of you yet. */ DO ~JoinParty()~ EXIT
-  + ~!AreaCheck("AR4500") GlobalLT("chapter","GLOBAL",9)~ + @2 /* Maybe it's time we thought about going our separate ways, Ninde. */ + LK#NP_goplz1
-  + ~!AreaCheck("AR4500") GlobalGT("chapter","GLOBAL",8)~ + @2 /* Maybe it's time we thought about going our separate ways, Ninde. */ + LK#NP_goplz2
+  + ~!AreaCheck("AR4500") GlobalLT("chapter","GLOBAL",%bg2_chapter_9%)~ + @2 /* Maybe it's time we thought about going our separate ways, Ninde. */ + LK#NP_goplz1
+  + ~!AreaCheck("AR4500") GlobalGT("chapter","GLOBAL",%bg2_chapter_8%)~ + @2 /* Maybe it's time we thought about going our separate ways, Ninde. */ + LK#NP_goplz2
   + ~AreaCheck("AR4500")~ + @2 /* Maybe it's time we thought about going our separate ways, Ninde. */ + LK#NP_goplz3
 END
 

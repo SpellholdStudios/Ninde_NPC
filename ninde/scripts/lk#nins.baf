@@ -169,7 +169,7 @@ IF
     OR(2)
     	Global("LK#NindeRomanceActive","GLOBAL",2)
     	Global("LK#NindeFriendshipActive","GLOBAL",1)
-    Global("chapter","GLOBAL",6)
+    Global("chapter","GLOBAL",%bg2_chapter_6%)
     Global("LK#Ninde_Encounter","GLOBAL",0)
 THEN
   RESPONSE #100
