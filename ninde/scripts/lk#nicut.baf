@@ -5,7 +5,7 @@ THEN
     CutSceneId("Ninde")
     ActionOverride("suelle2",ForceSpellRES("lk#nisp1",Myself))
     Wait(4)
-    DisplayStringHead("suelle2",~Seldarine, I call on thee...~)
+    DisplayStringHead("suelle2",@0)
     Wait(4)
     ActionOverride("Ninde",ForceSpellRES("lk#nisp2",Myself))
     ActionOverride(Player1,ForceSpellRES("lk#nisp2",Myself))
