@@ -258,10 +258,10 @@ TODO - Added component `DESIGNATED` number and "*ninde_npc_for_bg2*" `LABEL`.
 	- Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
 	- EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
 
-TODO - Replaced `AUTHOR` keyword with `SUPPORT`.
+- Replaced `AUTHOR` keyword with `SUPPORT`.
 
 - Fixed a typo in lk#nindj.tra causing CTD (replaced *naïve* with *naive*) and a few others in tra files.
-
+- Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 
 TODO - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.

@@ -90,13 +90,22 @@ EXTEND_BOTTOM ~nalia.bcs~    ~ninde/scripts/nalia.baf~
 EXTEND_TOP ~ar6200.bcs~ ~ninde/scripts/ar6200.baf~
 EXTEND_BOTTOM ~cut218g.bcs~ ~ninde/scripts/lk#niwr2.baf~
 
-// Crooked Cane script patching, thanks to DavidW at G3
+// Patching Crooked Crane 1st Floor script: Make sure the script exists and is set in AR0021.
 COPY_EXISTING ~ar0021.are~ ~override~
-	WRITE_EVALUATED_ASCII 0x94 ~ar0021~
-  BUT_ONLY
+	READ_ASCII 0x94 ar0021_script
+	PATCH_IF ("%ar0021_script%" STRING_COMPARE_CASE ~~ = 0) BEGIN // if blank
+		WRITE_ASCIIE 0x94 ~%SOURCE_RES%~ #8
+	END
+	READ_ASCII 0x94 ar0021_script
+BUT_ONLY
 
-EXTEND_TOP ~ar0021.bcs~ ~ninde/scripts/ar0021.baf~
-
+ACTION_IF (FILE_EXISTS_IN_GAME ~%ar0021_script%.bcs~) BEGIN
+	// Append to existing script
+	EXTEND_TOP ~%ar0021_script%.bcs~ ~ninde/scripts/ar0021.baf~
+END ELSE BEGIN
+	// Create new script
+	COMPILE ~ninde/scripts/ar0021.baf~
+END
 
 /* ------------- *
  *  Fate Spirit  *
