@@ -1,18 +1,23 @@
-/* ====================================== *
- *         COMPONENT INSTALLATION         *
- * ====================================== */
+/* =========================================== *
+ *         MAIN COMPONENT INSTALLATION         *
+ * =========================================== */
 
 /* -------------------------------------------------------------------------------------------------- *
- *   	ADDs CamDawg's custom IsValidForPartyDialogue state used throughout ninde. Thanks Cam!         *
+ *   	ADDs CamDawg's custom IsValidForPartyDialogue state used throughout ninde. Thanks Cam!        *
  * -------------------------------------------------------------------------------------------------- *
  *  covers STATE_CONFUSED, STATE_FEEBLEMINDED, STATE_SILENCED, STATE_DEAD, STATE_ACID_DEATH,          *
  *  STATE_FLAME_DEATH, STATE_EXPLODING_DEATH, STATE_STONE_DEATH, STATE_FROZEN_DEATH, STATE_HELPLESS,  *
  *  STATE_STUNNED, STATE_PANIC, STATE_BERSERK, STATE_SLEEPING                                         *
  * -------------------------------------------------------------------------------------------------- */
-APPEND ~state.ids~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
+APPEND ~state.ids~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~^0x80101FEF[ %TAB]+CD_STATE_NOTVALID[ %TAB%%LNL%%MNL%%WNL%]~
 
-// new state needed to fix Dead() triggers that don't use DVs
-APPEND ~state.ids~ ~0x00000FC0 STATE_REALLY_DEAD~ UNLESS ~0x00000FC0 STATE_REALLY_DEAD~
+
+/* ---------------------------------------------------------------------------------------------------------------------- *
+ *   	ADDs CamDawg's custom state needed to fix Dead() triggers that don't use DVs. Thanks Cam!                         *
+ * ---------------------------------------------------------------------------------------------------------------------- *
+ *  covers STATE_DEAD, STATE_ACID_DEATH, STATE_FLAME_DEATH, STATE_EXPLODING_DEATH, STATE_STONE_DEATH, STATE_FROZEN_DEATH  *
+ * ---------------------------------------------------------------------------------------------------------------------- */
+APPEND ~state.ids~ ~0x00000FC0 STATE_REALLY_DEAD~ UNLESS ~^0x00000FC0[ %TAB]+STATE_REALLY_DEAD[ %TAB%%LNL%%MNL%%WNL%]~
 
 
 /* ------------------------------ *
@@ -163,12 +168,14 @@ COPY ~ninde/creatures/lk#nind.cre~ ~override/lk#nind.cre~
 	PATCH_IF is_ee BEGIN
 		WRITE_ASCII 0x34 ~rh#adrM~ #8   // small portrait
 		WRITE_ASCII 0x3c ~rh#adrL~ #8   // medium portrait
-		WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~lk#ni25~ #8
-	END ELSE BEGIN
-		WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~lk#nins~ #8
 	END
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~Ninde~ #32
+	PATCH_IF ("%DEST_RES%" STRING_COMPARE_CASE ~lk#nind~ = 0) BEGIN
+		WRITE_ASCII SCRIPT_OVERRIDE ~lk#nins~ #8
+	END ELSE BEGIN
+		WRITE_ASCII SCRIPT_OVERRIDE ~lk#ni25~ #8
+	END
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCII  DEATHVAR        ~Ninde~ #32
 	SAY BIO @4 /* "The past is precisely that -- the past." Ninde says, with a pointed yawn. Despite her initial reluctance, you soon manage to glean a little more information about the sun elf's past. Namely that although she was born in the Elven forest of Cormanthor, she was raised in Waterdeep, by a wealthy family of human traders, who spared no expense on her magical education. But although she developed a taste for the finer things in life, she was distinctly less delighted by the prospect of having to work for them To her adoptive families chagrin, she fell in with the city's seedier element, and began to delve into the shadier side of arcane lore. Soon she went from Waterdhavian high society's most desirable young ingenue to a regular among the ghosts and rats of its criminal underbelly. And indeed, whatever secrets she unearthed there have left their mark on the elf. Her eyes tell you more of the tragedy, darkness, and romance of her past then the secretive Ninde herself ever would. */
 	SAY MORALE @5				/* I don't think Ninde's going to be staying around for this one. */
 	SAY LEADER @6				/* I can't help feeling that this will be an awful lot of work. Unless, of course, as leader, I can lead us to a nice luxurious Inn, and make us stay there. Forever. */
@@ -225,11 +232,11 @@ COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#niaon.cre~
 	SAY SELECT_COMMON3 ~~ []
 	SAY SELECT_COMMON4 ~~ []
 	SAY SELECT_ACTION4 ~~ []
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS    ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT  ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_CRE_ITEM ~potn46~ #1 #0 #0 ~IDENTIFIED~ ~inv1~
 	ADD_CRE_ITEM ~potn55~ #1 #0 #0 ~IDENTIFIED~ ~inv2~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
@@ -248,11 +255,11 @@ COPY ~ninde/creatures/lk#npf.cre~ ~override/lk#nidil.cre~
 	SAY SELECT_COMMON3 ~~ []
 	SAY SELECT_COMMON4 ~~ []
 	SAY SELECT_ACTION4 ~~ []
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS    ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT  ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_KNOWN_SPELL ~sppr315~ #4 ~priest~ // cure medium wounds
 	ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
 	ADD_MEMORIZED_SPELL ~sppr315~ #4 ~priest~ (1)
@@ -273,11 +280,11 @@ BUT_ONLY
 	SAY SELECT_COMMON3 ~~ []
 	SAY SELECT_COMMON4 ~~ []
 	SAY SELECT_ACTION4 ~~ []
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE  ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS     ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT   ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_KNOWN_SPELL ~sppr315~ #4 ~priest~ // cure medium wounds
 	ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
 	ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
@@ -296,11 +303,11 @@ BUT_ONLY
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#nipru.cre~
 	SAY NAME1 @51 /* Sir Prufrock */
 	SAY NAME2 @51
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS    ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT  ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
 	ADD_KNOWN_SPELL ~sppr111~ #4 ~priest~ // armor of faith
 	ADD_KNOWN_SPELL ~sppr113~ #5 ~priest~ // doom
@@ -318,11 +325,11 @@ BUT_ONLY
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niwin.cre~
 	SAY NAME1 @52 /* Sir Windhover */
 	SAY NAME2 @52
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS    ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT  ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv4~
 	ADD_CRE_ITEM ~potn05~ #1 #0 #0 ~IDENTIFIED~ ~inv5~
 	ADD_CRE_ITEM ~potn07~ #1 #0 #0 ~IDENTIFIED~ ~inv6~
@@ -333,11 +340,11 @@ BUT_ONLY
 COPY ~ninde/creatures/lk#npm.cre~ ~override/lk#niarc.cre~
 	SAY NAME1 @53 /* Lord Archonson */
 	SAY NAME2 @53
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_CLASS    ~~ #8
-	WRITE_EVALUATED_ASCII SCRIPT_DEFAULT  ~lk#npal~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCII  SCRIPT_OVERRIDE ~~ #8
+	WRITE_ASCII  SCRIPT_CLASS    ~~ #8
+	WRITE_ASCII  SCRIPT_DEFAULT  ~lk#npal~ #8
 	ADD_KNOWN_SPELL ~sppr401~ #6 ~priest~ // cure serious wounds
 	ADD_KNOWN_SPELL ~sppr214~ #5 ~priest~ // draw upon holy might
 	ADD_KNOWN_SPELL ~sppr113~ #5 ~priest~ // doom
@@ -352,27 +359,27 @@ BUT_ONLY
 COPY_EXISTING ~messen.cre~ ~override/lk#nimes.cre~
 	SAY NAME1 @54 /* Messenger */
 	SAY NAME2 @54
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCIIE SCRIPT_OVERRIDE ~%DEST_RES%~ #8
 BUT_ONLY
 
 // Shadow Thief
 COPY_EXISTING ~stolethf.cre~ ~override/lk#nithf.cre~
 	SAY NAME1 @55 /* Shadow Thief */
 	SAY NAME2 @55
-	WRITE_EVALUATED_ASCII DIALOG          ~%DEST_RES%~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~%DEST_RES%~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8
+	WRITE_ASCIIE DIALOG          ~%DEST_RES%~ #8
+	WRITE_ASCIIE DEATHVAR        ~%DEST_RES%~ #32
+	WRITE_ASCIIE SCRIPT_OVERRIDE ~%DEST_RES%~ #8
 BUT_ONLY
 
 // Wraith Scene
 COPY_EXISTING ~tolmag01.cre~ ~override/lk#sykre.cre~
 	SAY NAME1 @56 /* Sykre */
 	SAY NAME2 @57 /* Sykre D'Alysoss */
-	WRITE_EVALUATED_ASCII DIALOG          ~lk#sykre~ #8
-	WRITE_EVALUATED_ASCII DEATHVAR        ~lk#sykre~ #32
-	WRITE_EVALUATED_ASCII SCRIPT_OVERRIDE ~%DEST_RES%~ #8  
+	WRITE_ASCII  DIALOG          ~lk#sykre~ #8
+	WRITE_ASCII  DEATHVAR        ~lk#sykre~ #32
+	WRITE_ASCIIE SCRIPT_OVERRIDE ~%DEST_RES%~ #8  
 BUT_ONLY
 
 
@@ -454,7 +461,7 @@ LAF HANDLE_AUDIO
 	INT_VAR
 		music = 1	// needed for EE games.
 	STR_VAR
-		audio_path = ~ninde/audio/music~
+		audio_path  = ~ninde/audio/music~
 		oggdec_path = ~ninde/audio~
-		sox_path = ~ninde/audio~
+		sox_path    = ~ninde/audio~
 END
