@@ -235,19 +235,20 @@ In addition to the methods above for removing individual components, you can com
 #### Version 3.0 ( March 2020)
 
 - Added *ninde.ini* metadata file to support AL|EN's "Project Infinity".
-
-TODO - Added component `DESIGNATED` number and "*ninde_npc_for_bg2*" `LABEL`.
-
+- Replaced `AUTHOR` keyword with `SUPPORT`.
+- Added component `DESIGNATED` number and "*ninde_npc_for_bg2*" `LABEL`.
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Replaced `GAME_IS` conditions with variables checks to speed up install time.
 - Added missing HANDLE_CHARSETS function to convert string entries for EE games.
+
 - HANDLE_AUDIO function: Added music variable for EE games and moved .ogg file into new music sub-folder.
 
+- Fixed the "Ninde not appearing in Crooked Crane 1st Floor" bug.
 - Fixed typos in .d and .baf files:
-  - questd.d: Replaced !StateCheck("Korgann",CD_STATE_NOTVALID) with !StateCheck("Korgan",CD_STATE_NOTVALID).
-  - lk#ni25d.baf and lk#nind.baf: Replaced !StateCheck("Myself",CD_STATE_NOTVALID) with !StateCheck(Myself,CD_STATE_NOTVALID).
-  - lk#nindj.d: Replaced InParty("Imoen") with InParty("Imoen2").
+  - questd.d: Replaced !StateCheck("*<ins>Korgann</ins>*",CD_STATE_NOTVALID) with !StateCheck("*<ins>Korgan</ins>*",CD_STATE_NOTVALID).
+  - lk#ni25d.baf and lk#nind.baf: Replaced !StateCheck(*<ins>"Myself"</ins>*,CD_STATE_NOTVALID) with !StateCheck(*<ins>Myself</ins>*,CD_STATE_NOTVALID).
+  - lk#nindj.d: Replaced InParty("*<ins>Imoen</ins>*") with InParty("*<ins>Imoen2</ins>*").
 - Fixed Ninde portraits in EE games.
 - Converted inventory BAMs to EE: This feature attempts to modify traditional inventory BAMs so that both the large and small icons are utilized by the EE games. The inventory BAM must have two sequences, the first containing the "large" inventory icon frame and the second containing the "small" inventory icon frame to be processed. Inventory icon BAMs in the bam folder that meet these requirements are patched and saved back to the override folder.
 - <ins>Ankh of Ascension (lk#nankh.itm)</ins>:
@@ -258,23 +259,22 @@ TODO - Added component `DESIGNATED` number and "*ninde_npc_for_bg2*" `LABEL`.
 	- Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
 	- EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
 
-- Replaced `AUTHOR` keyword with `SUPPORT`.
 
-- Fixed a typo in lk#nindj.tra causing CTD (replaced *naïve* with *naive*) and a few others in tra files.
+- Fixed a typo in lk#nindj.tra causing CTD (replaced *na<ins>ï</ins>ve* with *na<ins>i</ins>ve*) and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 
 TODO - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
 
 - Removed useless files and folders (backup and bgee).
-	- Reorganized mod architecture tree: created folders to sort files according to their types.
+- Reorganized mod architecture tree: created folders to sort files according to their types.
 
 TODO - Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
 
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
 
-TODO oggdec sox
+TODO update oggdec sox
 
 ## 
 

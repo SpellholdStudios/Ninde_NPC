@@ -1,7 +1,3 @@
-// --------------------------------------------
-// Mod setup
-// --------------------------------------------
-// Basics
 BACKUP ~ninde/backup~
 //AUTHOR ~Deva and K'aeloree (kae@spellholdstudios.net)~
 SUPPORT ~ Spellhold staff at http://www.shsforums.net/forum/417-ninde/~
@@ -12,55 +8,59 @@ README ~ninde/readme/ninde-readme-english.html~
 
 ALWAYS
 
-	// Determines which game is installed and if the game is an Enhanced Edition.
-	OUTER_SET is_ee = (GAME_IS ~bg2ee eet~) ? 1 : 0					// EE game
-	OUTER_SET is_tob = (GAME_IS ~bgt tob tutu tutu_totsc~) ? 1 : 0	// based on vanilla ToB engine
-	OUTER_SET is_bg2ee = (GAME_IS "bg2ee") ? 1 : 0					// b2gee
-	OUTER_SET is_eet = (GAME_IS "eet") ? 1 : 0						// eet
+	ACTION_IF NOT VARIABLE_IS_SET bg2_chapter BEGIN // Always block must run only once per install!
 
-	ACTION_IF is_ee BEGIN
-		OUTER_SPRINT var_ee "_ee"
-	END ELSE BEGIN
-		OUTER_SPRINT var_ee ""
-	END
+		// Determines which game is installed and if the game is an Enhanced Edition.
+		OUTER_SET is_ee = (GAME_IS ~bg2ee eet~) ? 1 : 0					// EE game
+		OUTER_SET is_tob = (GAME_IS ~bgt tob tutu tutu_totsc~) ? 1 : 0	// based on vanilla ToB engine
+		OUTER_SET is_bg2ee = (GAME_IS "bg2ee") ? 1 : 0					// b2gee
+		OUTER_SET is_eet = (GAME_IS "eet") ? 1 : 0						// eet
 
-
-	/* eet compatibility */
-	ACTION_IF (is_eet) BEGIN
-		OUTER_SET bg2_chapter = 12
-	END ELSE BEGIN
-		OUTER_SET bg2_chapter = 0
-	END
-	OUTER_FOR (i = 1 ; i <= 10 ; ++i) BEGIN
-		OUTER_SET bg2_chapter = bg2_chapter + 1
-		OUTER_SPRINT name_source ~bg2_chapter_%i%~
-		OUTER_SET EVAL ~%name_source%~ = bg2_chapter
-	END
-
-
-	// Determines if item_use.2da file is installed by ToBEx.
-	OUTER_SET is_tobex=0
-	ACTION_IF FILE_EXISTS ~tobex_ini/tobexcore.ini~ BEGIN
-		ACTION_IF FILE_CONTAINS_EVALUATED (~tobex_ini/tobexcore.ini~ ~Externalise Item-Creature Exclusions=1~) BEGIN
-			OUTER_SET is_tobex=1
+		ACTION_IF is_ee BEGIN
+			OUTER_SPRINT var_ee "_ee"
+		END ELSE BEGIN
+			OUTER_SPRINT var_ee ""
 		END
-	END
-	OUTER_SET is_item_use = (is_ee OR is_tobex) ? 1 : 0
 
-	// Borrowed from Edwin Romance: convert strings to UTF-8 for BGEE/BG2EE
-	// No exception, everything needs to be converted
-	// setup.tra contains in game texts as well as installation texts and need to be converted
-	ACTION_DEFINE_ARRAY lk#noconvert BEGIN END
-	// any tra files used in LANGUAGE need to be reloaded after UTF-8 conversion
-	ACTION_DEFINE_ARRAY lk#reload BEGIN setup END
 
-	LAF HANDLE_CHARSETS
-		INT_VAR
-			infer_charsets = 1
-		STR_VAR
-			tra_path = EVAL ~%MOD_FOLDER%/translations~
-			noconvert_array = lk#noconvert
-			reload_array = lk#reload
+		/* eet compatibility */
+		ACTION_IF (is_eet) BEGIN
+			OUTER_SET bg2_chapter = 12
+		END ELSE BEGIN
+			OUTER_SET bg2_chapter = 0
+		END
+		OUTER_FOR (i = 1 ; i <= 10 ; ++i) BEGIN
+			OUTER_SET bg2_chapter = bg2_chapter + 1
+			OUTER_SPRINT name_source ~bg2_chapter_%i%~
+			OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+		END
+
+
+		// Determines if item_use.2da file is installed by ToBEx.
+		OUTER_SET is_tobex=0
+		ACTION_IF FILE_EXISTS ~tobex_ini/tobexcore.ini~ BEGIN
+			ACTION_IF FILE_CONTAINS_EVALUATED (~tobex_ini/tobexcore.ini~ ~Externalise Item-Creature Exclusions=1~) BEGIN
+				OUTER_SET is_tobex=1
+			END
+		END
+		OUTER_SET is_item_use = (is_ee OR is_tobex) ? 1 : 0
+
+		// Borrowed from Edwin Romance: convert strings to UTF-8 for BGEE/BG2EE
+		// No exception, everything needs to be converted
+		// setup.tra contains in game texts as well as installation texts and need to be converted
+		ACTION_DEFINE_ARRAY lk#noconvert BEGIN END
+		// any tra files used in LANGUAGE need to be reloaded after UTF-8 conversion
+		ACTION_DEFINE_ARRAY lk#reload BEGIN setup END
+
+		LAF HANDLE_CHARSETS
+			INT_VAR
+				infer_charsets = 1
+			STR_VAR
+				tra_path = EVAL ~%MOD_FOLDER%/translations~
+				noconvert_array = lk#noconvert
+				reload_array = lk#reload
+		END
+
 	END
 
 END
@@ -72,11 +72,13 @@ LANGUAGE ~English~
          ~english~
          ~ninde/translations/english/setup.tra~
 
+
 /* ======================== *
  *  Ninde NPC Mod for BGII  *
  * ======================== */
 BEGIN @0											/* Ninde NPC Mod for BGII */
 REQUIRE_PREDICATE GAME_INCLUDES ~tob~ @1			// ~You must have Throne of Bhaal or BG2:EE installed to install Ninde NPC mod.~
+DESIGNATED 0 LABEL ~ninde_npc_for_bg2~
 
 INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 
