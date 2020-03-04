@@ -11,7 +11,7 @@
 </div><br />
 
 
-**Authors:** Deva, Rhaella  
+**Authors:** Deva, K'aeloree and Rhaella  
 **Mod Website:** <a href="http://www.spellholdstudios.net/ie/ninde">Spellhold Studios</a>  
 **Mod Forum:** <a href="http://www.shsforums.net/forum/417-ninde/">Ninde NPC</a>  
 
@@ -31,8 +31,7 @@
 
 ## <a name="intro" id="intro"></a>Overview
 
-<img style="float: left;" src="ninde/readme/images/lknindl.png">
-Lady Ninde Amblecrown, once Waterdeep's most alluring young ingenue, now a hunted woman with a tongue like a guillotine, formidable magical skill and a matching ego. Will you befriend her? Grow to love her? Will you even be able to bring yourself to tolerate her?
+<img style="float: left;" src="ninde/readme/images/lknindl.png"> Lady Ninde Amblecrown, once Waterdeep's most alluring young ingenue, now a hunted woman with a tongue like a guillotine, formidable magical skill and a matching ego. Will you befriend her? Grow to love her? Will you even be able to bring yourself to tolerate her?
 
 She is a Neutral Evil elven necromancer and can be found in Bodhi's lair only if the PC sides with Aran Linvail. She's rated PG13, on account of some steaminess here and there. The romance boasts some more mature content.
 
@@ -240,15 +239,15 @@ In addition to the methods above for removing individual components, you can com
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Replaced `GAME_IS` conditions with variables checks to speed up install time.
-- Added missing HANDLE_CHARSETS function to convert string entries for EE games.
-
-- HANDLE_AUDIO function: Added music variable for EE games and moved .ogg file into new music sub-folder.
-
+- Added missing HANDLE_CHARSETS function to convert string entries for EE games (to prepare for possible translations).
+- Added EET compatibility.
+- ToB: Summoning Ninde via fate spirit will be deactivated if Ninde was in the party during ToB transition.
 - Fixed the "Ninde not appearing in Crooked Crane 1st Floor" bug.
 - Fixed typos in .d and .baf files:
   - questd.d: Replaced !StateCheck("*<ins>Korgann</ins>*",CD_STATE_NOTVALID) with !StateCheck("*<ins>Korgan</ins>*",CD_STATE_NOTVALID).
   - lk#ni25d.baf and lk#nind.baf: Replaced !StateCheck(*<ins>"Myself"</ins>*,CD_STATE_NOTVALID) with !StateCheck(*<ins>Myself</ins>*,CD_STATE_NOTVALID).
   - lk#nindj.d: Replaced InParty("*<ins>Imoen</ins>*") with InParty("*<ins>Imoen2</ins>*").
+- Added "*Continue()*" to the script blocks that are patched via `EXTEND_TOP`.
 - Fixed Ninde portraits in EE games.
 - Converted inventory BAMs to EE: This feature attempts to modify traditional inventory BAMs so that both the large and small icons are utilized by the EE games. The inventory BAM must have two sequences, the first containing the "large" inventory icon frame and the second containing the "small" inventory icon frame to be processed. Inventory icon BAMs in the bam folder that meet these requirements are patched and saved back to the override folder.
 - <ins>Ankh of Ascension (lk#nankh.itm)</ins>:

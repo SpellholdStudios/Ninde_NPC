@@ -480,7 +480,7 @@ COPY_EXISTING ~songlist.2da~ ~override~
 
 LAF HANDLE_AUDIO
 	INT_VAR
-		music = 1	// needed for EE games.
+//		music = 1	// needed for EE games.
 	STR_VAR
 		audio_path  = ~ninde/audio/music~
 		oggdec_path = ~ninde/audio~
