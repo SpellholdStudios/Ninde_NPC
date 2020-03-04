@@ -92,8 +92,9 @@ EXTEND_BOTTOM ~bodhiamb.bcs~ ~ninde/scripts/bodhiamb.baf~
 EXTEND_BOTTOM ~haerda.bcs~   ~ninde/scripts/haerda.baf~
 EXTEND_BOTTOM ~nalia.bcs~    ~ninde/scripts/nalia.baf~
 
-EXTEND_TOP ~ar6200.bcs~ ~ninde/scripts/ar6200.baf~
-EXTEND_BOTTOM ~cut218g.bcs~ ~ninde/scripts/lk#niwr2.baf~
+EXTEND_BOTTOM ~ar4000.bcs~   ~ninde/scripts/ar4000.baf~	//disable summoning in ToB if in party
+EXTEND_TOP    ~ar6200.bcs~   ~ninde/scripts/ar6200.baf~
+EXTEND_BOTTOM ~cut218g.bcs~  ~ninde/scripts/lk#niwr2.baf~
 
 // Patching Crooked Crane 1st Floor script: Make sure the script exists and is set in AR0021.
 COPY_EXISTING ~ar0021.are~ ~override~
