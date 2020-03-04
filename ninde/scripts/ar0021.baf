@@ -4,7 +4,8 @@
 IF
     Global("LK#NindeSpawnCrooked","GLOBAL",1)
 THEN
-  RESPONSE #100
-    SetGlobal("LK#NindeSpawnCrooked","GLOBAL",2)
-    CreateCreature("lk#nind",[430.313],0)
+	RESPONSE #100
+		SetGlobal("LK#NindeSpawnCrooked","GLOBAL",2)
+		CreateCreature("lk#nind",[430.313],0)
+		Continue()
 END
