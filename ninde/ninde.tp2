@@ -22,6 +22,9 @@ ALWAYS
 			OUTER_SPRINT var_ee ""
 		END
 
+		// Variable used by FUNCTION GW_FIND_DLG_RESPONSE_STRING to find after which transition Ninde will be recalled by Fate Spirit.
+		OUTER_SET fatesp_string = (is_ee = 1) ? 89602 :	62019			// 89602 = ~Bring me Neera, the half-elven wild mage.~ - 62019 = ~Bring me Nalia, the thief/mage.~
+
 
 		/* eet compatibility */
 		ACTION_IF (is_eet) BEGIN

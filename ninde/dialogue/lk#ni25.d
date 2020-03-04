@@ -3,25 +3,26 @@
 // ---------------------------------------------
 BEGIN LK#NI25
 
+/* As of v3.0, moved to lk#ni25_fatesp.d for EET compatibility
 // FATE SPIRIT
 
 EXTEND_TOP FATESP 6
-+ ~!Dead("Ninde") !InMyArea("Ninde") CheckStatGT(Player1,12,CHR) Gender(Player1,MALE) Global("LK#NindeSummoned","GLOBAL",0)~ + @0 /* Bring me my lover, Ninde. */ 
++ ~!Dead("Ninde") !InMyArea("Ninde") CheckStatGT(Player1,12,CHR) Gender(Player1,MALE) Global("LK#NindeSummoned","GLOBAL",0)~ + @0 // Bring me my lover, Ninde.
 	DO ~CreateVisualEffect("SPPORTAL",[1999.1228])
 	Wait(2)
 	CreateCreature("lk#ni25",[1999.1228],1)
 	SetGlobal("LK#NindeRomanceActive","GLOBAL",2)
 	SetGlobal("LK#NindeRestored","GLOBAL",1)
 	SetGlobal("LK#NindeSummoned","GLOBAL",1)~ GOTO 8
-+ ~!Dead("Ninde") !InMyArea("Ninde") Global("LK#NindeSummoned","GLOBAL",0)~ + @1 /* Bring me Ninde, the elven necromancer. */ 
++ ~!Dead("Ninde") !InMyArea("Ninde") Global("LK#NindeSummoned","GLOBAL",0)~ + @1 // Bring me Ninde, the elven necromancer.
  	DO ~CreateVisualEffect("SPPORTAL",[1999.1228])
 	Wait(2)
 	CreateCreature("lk#ni25",[1999.1228],1)
 	SetGlobal("LK#NindeSummoned","GLOBAL",1)~ GOTO 8
 END
-	
-APPEND LK#NI25
 
+APPEND LK#NI25
+*/
 IF ~NumTimesTalkedTo(0)~ join1
  SAY @2 /* Hello there, Bhaalspawn.  This was not...quite how I envisioned our next meeting, though perhaps a trek through the Nine Hells should not surprise me by now. */
  	++ @3 /* If you're done gaping, I need your help. */ + join2
@@ -74,4 +75,4 @@ IF ~~ join9
  SAY @18 /* How awfully sentimental.  I have little interest in chitchat, Bhaalspawn.  Now, if you would excuse me... */
 IF ~~ EXIT
 END
-END
+//END of APPEND
