@@ -149,10 +149,10 @@ ADD_JOURNAL EXISTING TITLE (#74337) @26 @68 USING ~ninde/translations/%LANGUAGE%
 /* ---------------------- *
  *  Installing portraits  *
  * ---------------------- */
-COPY ~ninde/images/lk#nindl.bmp~		 ~override/lk#nindl.bmp~
-COPY ~ninde/images/lk#nindm%var_ee%.bmp~ ~override/lk#nindm.bmp~
+COPY ~ninde/portraits/lk#nindl.bmp~			~override/lk#nindl.bmp~
+COPY ~ninde/portraits/lk#nindm%var_ee%.bmp~	~override/lk#nindm.bmp~
 ACTION_IF is_tob BEGIN
-	COPY ~ninde/images/lk#ninds.bmp~	 ~overridelk#ninds.bmp~
+	COPY ~ninde/portraits/lk#ninds.bmp~		~overridelk#ninds.bmp~
 END
 
 
