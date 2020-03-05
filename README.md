@@ -242,7 +242,7 @@ In addition to the methods above for removing individual components, you can com
 - Added missing HANDLE_CHARSETS function to convert string entries for EE games (to prepare for possible translations).
 - Added EET compatibility.
 - ToB: Summoning Ninde via fate spirit will be deactivated if Ninde was in the party during ToB transition.
-- Fixed the "Ninde not appearing in Crooked Crane 1st Floor" bug.
+- Fixed the "*Ninde not appearing in Crooked Crane 1st Floor*" <a href="http://www.shsforums.net/topic/59458-where-does-she-go-when-dissmissed/">bug</a>.
 - Fixed typos in .d and .baf files:
   - questd.d: Replaced !StateCheck("*<ins>Korgann</ins>*",CD_STATE_NOTVALID) with !StateCheck("*<ins>Korgan</ins>*",CD_STATE_NOTVALID).
   - lk#ni25d.baf and lk#nind.baf: Replaced !StateCheck(*<ins>"Myself"</ins>*,CD_STATE_NOTVALID) with !StateCheck(*<ins>Myself</ins>*,CD_STATE_NOTVALID).
@@ -258,7 +258,9 @@ In addition to the methods above for removing individual components, you can com
   - Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
   - EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
 
-- Fixed a typo in lk#nindj.tra causing CTD (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*") and a few others in tra files.
+- lk#nindp.d: 
+I will do so. I don't wish to discuss this now. Or ever again...
+- Fixed a typo in lk#nindj.tra <a href="http://www.shsforums.net/topic/57521-ninde-crash/">causing CTD</a> (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*", thanks <a href="https://forums.beamdog.com/discussion/comment/680148/#Comment_680148">nullset</a>!) and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 
