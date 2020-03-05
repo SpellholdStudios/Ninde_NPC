@@ -251,15 +251,14 @@ In addition to the methods above for removing individual components, you can com
 - Fixed Ninde portraits in EE games.
 - Converted inventory BAMs to EE: This feature attempts to modify traditional inventory BAMs so that both the large and small icons are utilized by the EE games. The inventory BAM must have two sequences, the first containing the "large" inventory icon frame and the second containing the "small" inventory icon frame to be processed. Inventory icon BAMs in the bam folder that meet these requirements are patched and saved back to the override folder.
 - <ins>Ankh of Ascension (lk#nankh.itm)</ins>:
-	- Fixed item description: added missing weight (1).
-	- Added missing opcodes for a full Immunity to Poison: op#173 (Poison Resistance Modifier = 100), op#169 (Immunity Special Effect Icon = 6 Poisoned) and op#267 (Protection from Display Specific String: 14017 *Poison* - 14662 *Poisoned*).
-	- Added missing opcodes for a full Immunity to Disease: op#169 (Immunity Special Effect Icon = 7 Diseased), op#267 (Protection from Display Specific String: 39752 *Stricken by a foul disease* - 54337 *Diseased*).
-	- Added missing opcodes or a full Immunity to Level Drain: op#267 (Protection from Display Specific String: 41495 *One Level Drained* - 40968 *Two Levels Drained* - 40969 *Three Levels Drained* - 40979 *Four Levels Drained* - 41616 *Five Levels Drained*) and op#169 (Immunity Special Effect Icon = 59 Energy Drain).
-	- Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
-	- EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
+  - Fixed item description: added missing weight (1).
+  - Added missing opcodes for a full Immunity to Poison: op#173 (Poison Resistance Modifier = 100), op#169 (Immunity Special Effect Icon = 6 Poisoned) and op#267 (Protection from Display Specific String: 14017 *Poison* - 14662 *Poisoned*).
+  - Added missing opcodes for a full Immunity to Disease: op#169 (Immunity Special Effect Icon = 7 Diseased), op#267 (Protection from Display Specific String: 39752 *Stricken by a foul disease* - 54337 *Diseased*).
+  - Added missing opcodes or a full Immunity to Level Drain: op#267 (Protection from Display Specific String: 41495 *One Level Drained* - 40968 *Two Levels Drained* - 40969 *Three Levels Drained* - 40979 *Four Levels Drained* - 41616 *Five Levels Drained*) and op#169 (Immunity Special Effect Icon = 59 Energy Drain).
+  - Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
+  - EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
 
-
-- Fixed a typo in lk#nindj.tra causing CTD (replaced *na<ins>ï</ins>ve* with *na<ins>i</ins>ve*) and a few others in tra files.
+- Fixed a typo in lk#nindj.tra causing CTD (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*") and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 
