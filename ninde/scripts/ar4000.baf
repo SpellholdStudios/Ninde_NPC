@@ -1,0 +1,10 @@
+/* Ninde was in party upon transition: he is no longer available for summoning */
+
+IF
+	InPartyAllowDead("Ninde")
+	Global("LK#NindeSummoned","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("LK#NindeSummoned","GLOBAL",2)
+		Continue()
+END
