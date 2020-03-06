@@ -231,7 +231,7 @@ In addition to the methods above for removing individual components, you can com
 
 ## <a name="versions" id="versions"></a>Version History
 
-#### Version 3.0 ( March 2020)
+#### Version 3.0 (6 March 2020)
 
 - Added *ninde.ini* metadata file to support AL|EN's "Project Infinity".
 - Replaced `AUTHOR` keyword with `SUPPORT`.
@@ -262,14 +262,13 @@ In addition to the methods above for removing individual components, you can com
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
-- Removed useless files and folders (backup and bgee).
+- Removed useless files and folders (backup, executables and bgee).
 - Reorganized mod architecture tree: created folders to sort files according to their types.
+- Updated OggDec to v1.9.7 and sox to v14.4.1.
 - Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
-
-TODO - Updated OggDec to v1.9.7 and sox to v14.4.1.
-
+ 
 ## 
 
 #### Version 2.2 (15 November 2013)
