@@ -1,7 +1,7 @@
 
 ![Latest Release](https://img.shields.io/github/v/release/GwendolyneFreddy/Ninde_NPC?include_prereleases&color=darkred)<a name="top" id="top"> </a>
 ![Platform](https://img.shields.io/static/v1?label=platform&message=windows%20%7C%20Mac%20%7C%20linux&color=informational)
-![Language](https://img.shields.io/static/v1?label=language&message=English%20%7C%20French&color=limegreen)
+![Language](https://img.shields.io/static/v1?label=language&message=English&color=limegreen)
 
 
 <div align="center"><h1>Ninde NPC for BGII</h1>
@@ -257,9 +257,7 @@ In addition to the methods above for removing individual components, you can com
   - Added missing opcodes or a full Immunity to Level Drain: op#267 (Protection from Display Specific String: 41495 *One Level Drained* - 40968 *Two Levels Drained* - 40969 *Three Levels Drained* - 40979 *Four Levels Drained* - 41616 *Five Levels Drained*) and op#169 (Immunity Special Effect Icon = 59 Energy Drain).
   - Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
   - EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
-
-- lk#nindp.d: 
-I will do so. I don't wish to discuss this now. Or ever again...
+- lk#nindp.tra: Fixed "*<<placeholder>>*" entry.
 - Fixed a typo in lk#nindj.tra <a href="http://www.shsforums.net/topic/57521-ninde-crash/">causing CTD</a> (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*", thanks <a href="https://forums.beamdog.com/discussion/comment/680148/#Comment_680148">nullset</a>!) and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.

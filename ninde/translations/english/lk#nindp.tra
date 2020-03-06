@@ -74,7 +74,7 @@ While I had feared that Bodhi's revenge upon me was Ninde's death, she was not p
 @69   = ~Unlike yourself. Bodhi if wise enough to see that being so motivated for revenge can lead to folly. Anyway, psychoanalysis aside, may we leave?~
 @70   = ~In a tomb? Lovely. Suffice to say I am not in my element. I simply wish to leave. Can we, <CHARNAME>?~
 @71   = ~As you would have it, but the sooner we leave the sooner I will feel right again. As it is, everything in this place sickens me, including you, Bhaalspawn.~
-//@72   = ~<<placeholder>>~
+//@72   = ~<<placeholder>>~ Fixed as of v3.0
 @72   = ~I will do so. I don't wish to discuss this now. Or ever again...~
 @73   = ~I am not here for your pleasure, <CHARNAME>. Now let me leave before I UNWARRANT entirely.~
 @74   = ~I really don't know. I don't know who should disgust me and who should please me anymore. Get me out of here, <CHARNAME>, I need to breathe real air again before I can think real thoughts.~
