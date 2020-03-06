@@ -29,10 +29,10 @@ BEGIN
 	READ_LONG 0x24 GW_numresponsetrigger	// Number of transition triggers
 	READ_LONG 0x28 GW_offaction				// Offset of action table from start of file
 	READ_LONG 0x2c GW_numaction				// Number of actions
-*/	PATCH_IF (GW_debug_variable > 2) BEGIN
+	PATCH_IF (GW_debug_variable > 2) BEGIN
 		PATCH_PRINT ~%SOURCE_RES%	-	CONTROLE FONCTION GW_FIND_DLG_RESPONSE_STRING	-	States = %GW_numstates%	at offset %GW_offstates%	-	Reponses = %GW_numresponse% at offset %GW_offresponse%.~
 	END
-	FOR (state = 0 ; state < GW_numstates ; ++state) BEGIN
+*/	FOR (state = 0 ; state < GW_numstates ; ++state) BEGIN
 		PATCH_IF ("%GW_transition_found%" STRING_COMPARE_CASE "Y") BEGIN
 			READ_LONG ("%GW_offstates%" +       (state * 0x10)) GW_state_string			// Actor response text (i.e. what the non-player character says to the party)
 			READ_LONG ("%GW_offstates%" + 0x4 + (state * 0x10)) GW_index_first_response	// Index of the first transition corresponding to this state (i.e. the index in the transition table of the first potential response the party can make in this state).
@@ -43,7 +43,7 @@ BEGIN
 					SET GW_transition_number = response
 					SET GW_state_number = state
 					SPRINT GW_transition_found "Y"
-//						PATCH_PRINT ~	CONTROL %SOURCE_RES%	-	CONTROLE FONCTION GW_FIND_DLG_RESPONSE_STRING	-	State #%state% = %GW_state_string%	-	Reponse #%response% = %GW_response_string%.~
+//						PATCH_PRINT ~	%SOURCE_RES%	-	CONTROL FONCTION GW_FIND_DLG_RESPONSE_STRING	-	State #%state% = %GW_state_string%	-	Reponse #%response% = %GW_response_string%.~
 				END
 			END	// of Looping through responses
 		END		// PATCH_IF ("%GW_transition_found%" STRING_COMPARE_CASE "Y")
