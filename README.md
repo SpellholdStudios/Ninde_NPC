@@ -257,18 +257,14 @@ In addition to the methods above for removing individual components, you can com
   - Added missing opcodes or a full Immunity to Level Drain: op#267 (Protection from Display Specific String: 41495 *One Level Drained* - 40968 *Two Levels Drained* - 40969 *Three Levels Drained* - 40979 *Four Levels Drained* - 41616 *Five Levels Drained*) and op#169 (Immunity Special Effect Icon = 59 Energy Drain).
   - Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
   - EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
-- lk#nindp.tra: Fixed "*<<placeholder>>*" entry.
+- lk#nindp.tra: Replaced "*&lt;&lt;placeholder&lt;&lt;*" entry with a more accurate one.
 - Fixed a typo in lk#nindj.tra <a href="http://www.shsforums.net/topic/57521-ninde-crash/">causing CTD</a> (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*", thanks <a href="https://forums.beamdog.com/discussion/comment/680148/#Comment_680148">nullset</a>!) and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
-
-TODO - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
-
+- Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
 - Removed useless files and folders (backup and bgee).
 - Reorganized mod architecture tree: created folders to sort files according to their types.
-
-TODO - Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
-
+- Included Linux and Mac Os X versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
 - Updated WeiDU installer to v246.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
 

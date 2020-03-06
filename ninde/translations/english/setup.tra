@@ -1,6 +1,6 @@
 @0    = ~Ninde NPC Mod for BGII~
-@1    = ~ToB is not installed! Please install the Throne of Bhaal expansion before installing Ninde.~
-@1    = ~You must have Throne of Bhaal or BG2:EE installed to install Adrian NPC mod.~
+//@1    = ~ToB is not installed! Please install the Throne of Bhaal expansion before installing Ninde.~
+@1    = ~You must have Throne of Bhaal or BG2:EE installed to install Ninde NPC mod.~
 
 
 /* ----------- *
