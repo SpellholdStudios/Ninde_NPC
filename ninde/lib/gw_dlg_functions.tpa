@@ -56,9 +56,9 @@ END				// of DEFINE_PATCH_FUNCTION
 /* =================================================================================================== *
  *  LOOKING for STATE and TRANSITION numbers in fatesp.dlg.                                            *
  * --------------------------------------------------------------------------------------------------- *
- *  We will insert Ninde after Nalia or Ninde using fatesp_string variable defined in ALWAYS block) :  *
+ *  We will insert Ninde after Nalia or Neera using fatesp_string variable defined in ALWAYS block) :  *
  *  #89602 = ~Bring me Neera, the half-elven wild mage.~ (EE)                                          *
- *  #62019 = ~Bring me Nalia, the thief/mage.~ (classical)                                             *
+ *  #65019 = ~Bring me Nalia, the thief/mage.~ (classical)                                             *
  * =================================================================================================== */
 
 COPY_EXISTING - ~fatesp.dlg~ ~override~

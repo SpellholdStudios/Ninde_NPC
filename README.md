@@ -239,7 +239,7 @@ In addition to the methods above for removing individual components, you can com
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Replaced `GAME_IS` conditions with variables checks to speed up install time.
-- Added missing HANDLE_CHARSETS function to convert string entries for EE games (to prepare for possible translations).
+- Added missing `HANDLE_CHARSETS` function to convert string entries for EE games (to prepare for possible translations).
 - Added EET compatibility.
 - ToB: Summoning Ninde via fate spirit will be deactivated if Ninde was in the party during ToB transition.
 - Fixed the "*Ninde not appearing in Crooked Crane 1st Floor*" <a href="http://www.shsforums.net/topic/59458-where-does-she-go-when-dissmissed/">bug</a>.

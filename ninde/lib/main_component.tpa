@@ -135,7 +135,7 @@ ACTION_IF is_eet BEGIN
 			SummonedVar = "LK#NindeSummoned"
 	END
 END ELSE BEGIN
-	INCLUDE ~%MOD_FOLDER%/lib/gw_dlg_fonctions.tpa~
+	INCLUDE ~%MOD_FOLDER%/lib/gw_dlg_functions.tpa~
 	COMPILE EVALUATE_BUFFER ~ninde/dialogue/lk#ni25_fatesp.d~ USING ~ninde/translations/%LANGUAGE%/lk#ni25.tra~
 END
 
