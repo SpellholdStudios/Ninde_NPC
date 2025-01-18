@@ -1,3 +1,8 @@
+<hr>
+
+:warning: **The maintenance and support of this project has been moved to a [new repository](https://github.com/Spellhold-Studios/Ninde-NPC).**
+
+<hr><br>
 
 ![Latest Release](https://img.shields.io/github/v/release/SpellholdStudios/Ninde_NPC?include_prereleases&color=darkred)<a name="top" id="top"> </a>
 ![Platform](https://img.shields.io/static/v1?label=platform&message=windows%20%7C%20Mac%20%7C%20linux&color=informational)
@@ -258,7 +263,7 @@ In addition to the methods above for removing individual components, you can com
   - Added missing DS value: opcode #282 (Script: Scripting State Modifier): parameter1 = 1 - parameter2 = 2 [158 SCRIPTINGSTATE3 aka LEVEL_DRAIN_IMMUNITY].
   - EE and ToBEx compatibility: added Item Creature Exclusion (item_use.2da).
 - lk#nindp.tra: Replaced "*&lt;&lt;placeholder&gt;&gt;*" entry with a more accurate one.
-- Fixed a typo in lk#nindj.tra <a href="http://www.shsforums.net/topic/57521-ninde-crash/">causing CTD</a> (replaced "*na<ins>ï</ins>ve*" with "*na<ins>i</ins>ve*", thanks <a href="https://forums.beamdog.com/discussion/comment/680148/#Comment_680148">nullset</a>!) and a few others in tra files.
+- Fixed a typo in lk#nindj.tra <a href="http://www.shsforums.net/topic/57521-ninde-crash/">causing CTD</a> (replaced "*na<ins>Ã¯</ins>ve*" with "*na<ins>i</ins>ve*", thanks <a href="https://forums.beamdog.com/discussion/comment/680148/#Comment_680148">nullset</a>!) and a few others in tra files.
 - Traified lk#nicut.baf.
 - Updated deprecated modding tools links.
 - Re-formated, updated and renamed readme file to *ninde-readme-english.html* and moved it into new readme folder.
